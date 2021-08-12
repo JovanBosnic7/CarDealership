@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -12,7 +13,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "ROLES")
+@Table(name = "roles")
 public class Role {
     private static final long serialVersionUID = 1L;
 
@@ -23,7 +24,7 @@ public class Role {
     private UUID id;
 
 
-    @Column(name="role")
+    @Column(name = "role")
     private String role;
 
     public void setRole(String role) {
@@ -43,7 +44,6 @@ public class Role {
     public void setId(UUID id) {
         this.id = id;
     }
-
 
 
 }

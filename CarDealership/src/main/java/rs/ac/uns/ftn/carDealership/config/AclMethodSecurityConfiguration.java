@@ -1,4 +1,5 @@
 package rs.ac.uns.ftn.carDealership.config;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
