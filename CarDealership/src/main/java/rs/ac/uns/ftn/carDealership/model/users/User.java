@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.carDealership.model;
+package rs.ac.uns.ftn.carDealership.model.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import rs.ac.uns.ftn.carDealership.model.auth.Role;
 
 import javax.persistence.*;
 import java.util.*;
@@ -21,8 +22,13 @@ import java.util.*;
 public abstract class User implements UserDetails {
 
     @Id
-    @Column(name = "id", nullable = false, unique = true)
-    private UUID id;
+    @Column(name = "user_id", nullable = false, unique = true)
+    private UUID userId;
+
+    @Column(name = "name", nullable = false)
+    private String name;
+    @Column(name = "lastname", nullable = false)
+    private String lastname;
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
@@ -35,9 +41,9 @@ public abstract class User implements UserDetails {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private List<Role> roles = new ArrayList<Role>() {
+    private List<Role> roles = new ArrayList<>() {
     };
 
     @Override

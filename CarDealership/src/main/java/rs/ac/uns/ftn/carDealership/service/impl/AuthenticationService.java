@@ -9,7 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.carDealership.model.auth.AuthRequest;
 import rs.ac.uns.ftn.carDealership.model.auth.AuthResponse;
-import rs.ac.uns.ftn.carDealership.model.User;
+import rs.ac.uns.ftn.carDealership.model.users.User;
 import rs.ac.uns.ftn.carDealership.security.TokenUtils;
 import rs.ac.uns.ftn.carDealership.service.IAuthenticationService;
 import java.util.Collection;
@@ -39,7 +39,7 @@ public class AuthenticationService implements IAuthenticationService {
             break;
 
         }
-        AuthResponse responseDTO = new AuthResponse(data.getId(), data.getUsername(), jwt, role, expiresIn);
+        AuthResponse responseDTO = new AuthResponse(data.getUserId(), data.getUsername(), jwt, role, expiresIn);
         return responseDTO;
     }
 }

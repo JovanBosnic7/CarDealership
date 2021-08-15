@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.carDealership.model;
+package rs.ac.uns.ftn.carDealership.model.auth;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
@@ -15,14 +15,13 @@ import java.util.UUID;
 @Entity
 @Table(name = "roles")
 public class Role {
-    private static final long serialVersionUID = 1L;
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", nullable = false, unique = true)
     private UUID id;
-
 
     @Column(name = "role")
     private String role;

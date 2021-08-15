@@ -1,6 +1,5 @@
-package rs.ac.uns.ftn.carDealership.model;
+package rs.ac.uns.ftn.carDealership.model.users;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,10 +11,9 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
+@PrimaryKeyJoinColumn(name = "user_id")
 @Table(name = "administrators")
 public class Administrator extends User implements Serializable {
-    @Column(name = "name")
-    private String name;
+
 }
