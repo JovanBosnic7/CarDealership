@@ -1,0 +1,36 @@
+<div style="margin: 10% auto" class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="../../assets/img/register.png"
+                style="width: 40px; height: 40px; margin-top: 20px; margin-bottom: 20px" id="icon" alt="User Icon" />
+        </div>
+        <!-- Login Form -->
+        <form>
+            <input type="text" id="login" class="fadeIn second" name="login" placeholder="ime"
+                [(ngModel)]="user.name" />
+            <p *ngIf="nameError !== ''" style="color: red;">{{nameError}}</p>
+            <input type="text" id="login" class="fadeIn second" name="login" placeholder="prezime"
+                [(ngModel)]="user.lastName" />
+            <p *ngIf="lastNameError !== ''" style="color: red;">{{lastNameError}}</p>
+            <input type="text" id="login" class="fadeIn second" name="login" placeholder="korisničko ime"
+                [(ngModel)]="user.username" />
+            <p *ngIf="usernameError !== ''" style="color: red;">{{usernameError}}</p>
+            <input type="password" id="password" class="fadeIn third" name="login" placeholder="lozinka"
+                [(ngModel)]="user.password" />
+            <p *ngIf="passwordError !== ''" style="color: red;">{{passwordError}}</p>
+            <input type="password" id="password" class="fadeIn third" name="login" placeholder="ponovite lozinku"
+                [(ngModel)]="repeatPassword" />
+            <p *ngIf="repeatPasswordError !== ''" style="color: red;">{{repeatPasswordError}}</p>
+            <input type="submit" class="fadeIn fourth" style="margin-top: 20px" (click)="register()"
+                value="Registrujte se" />
+        </form>
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover" style="color: black" href="/register">Već imate nalog? Prijavite se!</a>
+        </div>
+    </div>
+</div>

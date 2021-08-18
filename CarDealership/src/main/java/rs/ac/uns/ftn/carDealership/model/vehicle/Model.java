@@ -23,9 +23,6 @@ public class Model {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "landmark")
-    private String landmark;
-
     @ManyToOne
     @JoinColumn(name = "mark_id", referencedColumnName = "mark_id")
     private Mark mark;

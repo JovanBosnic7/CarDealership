@@ -5,10 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
-import rs.ac.uns.ftn.carDealership.model.enums.DriveType;
-import rs.ac.uns.ftn.carDealership.model.enums.EmissionClass;
-import rs.ac.uns.ftn.carDealership.model.enums.FuelType;
-
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -25,13 +21,13 @@ public class EngineSpecification {
     private UUID engineSpecificationId;
 
     @Column(name = "emission_class")
-    private EmissionClass emissionClass;
+    private String emissionClass;
 
     @Column(name = "fuel_type")
-    private FuelType fuelType;
+    private String fuelType;
 
     @Column(name = "drive_tpe")
-    private DriveType driveType;
+    private String driveType;
 
     @Column(name = "engine_power")
     private int enginePower;

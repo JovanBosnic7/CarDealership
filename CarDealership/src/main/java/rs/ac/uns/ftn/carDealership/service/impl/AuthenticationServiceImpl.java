@@ -15,7 +15,7 @@ import rs.ac.uns.ftn.carDealership.service.IAuthenticationService;
 import java.util.Collection;
 
 @Service
-public class AuthenticationService implements IAuthenticationService {
+public class AuthenticationServiceImpl implements IAuthenticationService {
 
     @Autowired
     private AuthenticationManager authenticationManager;

@@ -22,8 +22,4 @@ public class Accessories {
 
     @Column(name = "name")
     private String name;
-
-    @ManyToOne
-    @JoinColumn(name ="accessories_type_id")
-    private AccessoriesType type;
 }

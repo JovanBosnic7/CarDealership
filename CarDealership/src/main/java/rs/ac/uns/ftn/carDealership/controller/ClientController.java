@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateClient;
 import rs.ac.uns.ftn.carDealership.service.ClientDtoFactory;
-import rs.ac.uns.ftn.carDealership.service.ClientService;
+import rs.ac.uns.ftn.carDealership.service.IClientService;
 
 @RestController
 @RequestMapping(value = "/api/clients", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ClientController {
     @Autowired
-    ClientService clientService;
+    IClientService clientService;
     @Autowired
     PasswordEncoder passwordEncoder;
 

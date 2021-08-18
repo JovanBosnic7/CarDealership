@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rs.ac.uns.ftn.carDealership.model.auth.AuthRequest;
-import rs.ac.uns.ftn.carDealership.service.impl.AuthenticationService;
+import rs.ac.uns.ftn.carDealership.service.impl.AuthenticationServiceImpl;
 
 @RestController
 @RequestMapping(value = "/api/auth", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AuthController {
     @Autowired
-    AuthenticationService authService;
+    AuthenticationServiceImpl authService;
 
     @PostMapping
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthRequest dto) {

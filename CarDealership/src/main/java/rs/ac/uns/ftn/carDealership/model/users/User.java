@@ -28,7 +28,7 @@ public abstract class User implements UserDetails {
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "lastname", nullable = false)
-    private String lastname;
+    private String lastName;
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
