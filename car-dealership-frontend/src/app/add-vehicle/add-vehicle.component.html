@@ -6,7 +6,7 @@
       border: 1px solid slategray;
       border-radius: 5px;
       box-shadow: 3px 3px 6px #00000029;
-      height: 700px;
+      height: 740px;
     "
   >
     <div
@@ -19,6 +19,11 @@
       "
     >
       <h4 class="text-right" style="margin-top: 50px">Unos fotografija</h4>
+      <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+        <input id="upload" class="form-control border-0" type="file" name="files" multiple enctype="mulitpart/form-data" (change)="onChange($event)">
+    </div>
+    <div *ngFor="let f of files">{{f.name}}</div>
+    <button (click) = "onClick()">klikni</button>
     </div>
     <div class="col-md-5 border-right">
       <div class="p-3 py-5">
@@ -60,7 +65,7 @@
               type="text"
               class="form-control"
               placeholder="Unesite godište vozila"
-              [(ngModel)]="year"
+              [(ngModel)]="addVehicle.year"
             />
           </div>
           <div class="col-md-6">
@@ -94,7 +99,7 @@
               type="text"
               class="form-control"
               placeholder="Unesite obeležje"
-              [(ngModel)]="landMark"
+              [(ngModel)]="addVehicle.landMark"
             />
           </div>
         </div>
@@ -105,7 +110,7 @@
               type="text"
               class="form-control"
               placeholder="Unesite kubikažu"
-              [(ngModel)]="cubicCapacity"
+              [(ngModel)]="addVehicle.cubicCapacity"
             />
           </div>
           <div class="col-md-6">
@@ -113,7 +118,7 @@
             ><input
               type="text"
               class="form-control"
-              [(ngModel)]="power"
+              [(ngModel)]="addVehicle.power"
               placeholder="Unesite snagu u kW"
             />
           </div>
@@ -122,58 +127,72 @@
             ><input
               type="text"
               class="form-control"
-              [(ngModel)] = "mileage" 
+              [(ngModel)]="addVehicle.mileage"
               placeholder="Unesite kilometražu"
             />
           </div>
           <div class="col-md-6">
             <label class="labels">Emisiona klasa motora</label>
-            <select (change) = "setEmissionClass($event)" class="form-control custom-select bg-white border-md">
+            <select
+              (change)="setEmissionClass($event)"
+              class="form-control custom-select bg-white border-md"
+            >
               <option>Izaberite emisionu klasu</option>
-              <option value = "Euro3">Euro3</option>
-              <option value = "Euro4">Euro4</option>
-              <option value = "Euro5">Euro5</option>
-              <option value = "Euro6">Euro6</option>              
+              <option value="Euro3">Euro3</option>
+              <option value="Euro4">Euro4</option>
+              <option value="Euro5">Euro5</option>
+              <option value="Euro6">Euro6</option>
             </select>
           </div>
           <div class="col-md-6">
             <label class="labels">Pogon</label>
-            <select (change) = "setDrive($event)" class="form-control custom-select bg-white border-md">
+            <select
+              (change)="setDrive($event)"
+              class="form-control custom-select bg-white border-md"
+            >
               <option>Izaberite pogon</option>
-              <option value = "Prednji">Prednji</option>
-              <option value = "Zadnji">Zadnji</option>
-              <option value = "4X4">4X4</option>
+              <option value="Prednji">Prednji</option>
+              <option value="Zadnji">Zadnji</option>
+              <option value="4X4">4X4</option>
             </select>
           </div>
           <div class="col-md-6">
             <label class="labels">Menjač</label>
-            <select (change) = "setGearBox($event)" class="form-control custom-select bg-white border-md">
+            <select
+              (change)="setGearBox($event)"
+              class="form-control custom-select bg-white border-md"
+            >
               <option>Izaberite menjač</option>
               <option value="Manuelni">Manuelni</option>
-              <option value = "Automatski">Automatski</option>
+              <option value="Automatski">Automatski</option>
             </select>
           </div>
           <div class="col-md-6">
             <label class="labels">Broj vrata</label>
             <input
-            type="text"
-            class="form-control"
-            [(ngModel)] = "numberOfDoors" 
-            placeholder="Unesite broj vrata"
-          />
+              type="text"
+              class="form-control"
+              [(ngModel)]="addVehicle.numberOfDoors"
+              placeholder="Unesite broj vrata"
+            />
           </div>
           <div class="col-md-6">
             <label class="labels">Broj sedišta</label>
             <input
-            type="text"
-            class="form-control"
-            [(ngModel)] = "numberOfSeats" 
-            placeholder="Unesite broj sedišta"
-          />
+              type="text"
+              class="form-control"
+              [(ngModel)]="addVehicle.numberOfSeats"
+              placeholder="Unesite broj sedišta"
+            />
           </div>
         </div>
         <div class="mt-5 text-center">
-          <button class="btn btn-outline-danger" type="button">
+          <button
+            style="margin-top: 40px"
+            (click)="onAddVehicle()"
+            class="btn btn-outline-danger"
+            type="button"
+          >
             Dodajte vozilo
           </button>
         </div>
@@ -182,32 +201,41 @@
     <div class="col-md-4" style="margin-top: 100px">
       <div class="col-md-6">
         <label class="labels">Klima</label>
-        <select (change) = "setAirConditioning($event)" class="form-control custom-select bg-white border-md">
+        <select
+          (change)="setAirConditioning($event)"
+          class="form-control custom-select bg-white border-md"
+        >
           <option>Izaberite klimu</option>
-          <option value = "Manuelna klima">Manuelna klima</option>
-          <option value = "Automatska klima">Automatska klima</option>
-          <option value = "Nema klimu">Nema klimu</option>
+          <option value="Manuelna klima">Manuelna klima</option>
+          <option value="Automatska klima">Automatska klima</option>
+          <option value="Nema klimu">Nema klimu</option>
         </select>
       </div>
       <div class="col-md-6">
         <label class="labels">Boja</label>
-        <select (change) = "setColor($event)" class="form-control custom-select bg-white border-md">
+        <select
+          (change)="setColor($event)"
+          class="form-control custom-select bg-white border-md"
+        >
           <option>Izaberite boju</option>
-          <option value = "Bela">Bela</option>
-          <option value = "Siva">Siva</option>
-          <option value = "Crna">Crna</option>
-          <option value = "Plava">Plava</option>
-          <option value = "Crvena">Crvena</option>
+          <option value="Bela">Bela</option>
+          <option value="Siva">Siva</option>
+          <option value="Crna">Crna</option>
+          <option value="Plava">Plava</option>
+          <option value="Crvena">Crvena</option>
         </select>
       </div>
       <div class="col-md-6">
         <label class="labels">Materijal enterijera</label>
-        <select (change) = "setInteriorMaterial($event)" class="form-control custom-select bg-white border-md">
+        <select
+          (change)="setInteriorMaterial($event)"
+          class="form-control custom-select bg-white border-md"
+        >
           <option>Izaberite materijal</option>
-          <option value = "Koža">Koža</option>
-          <option value = "Štof">Štof</option>
-          <option value = "Alkantara">Alkantara</option>
-          <option value = "Kombinovana koža">Kombinovana koža</option>
+          <option value="Koža">Koža</option>
+          <option value="Štof">Štof</option>
+          <option value="Alkantara">Alkantara</option>
+          <option value="Kombinovana koža">Kombinovana koža</option>
         </select>
       </div>
       <div class="col-md-6">
@@ -215,8 +243,22 @@
         ><input
           type="text"
           class="form-control"
-          [(ngModel)]= "price"
+          [(ngModel)]="addVehicle.price"
           placeholder="Unesite cenu"
+        />
+        <label class="labels">Broj motora</label
+        ><input
+          type="text"
+          class="form-control"
+          [(ngModel)]="addVehicle.engineNumber"
+          placeholder="Unesite br motora"
+        />
+        <label class="labels">Broj šasije</label
+        ><input
+          type="text"
+          class="form-control"
+          [(ngModel)]="addVehicle.chassisNumber"
+          placeholder="Unesite br šasije"
         />
       </div>
       <div class="col-md-11">
@@ -253,7 +295,7 @@
           type="checkbox"
           id="notifyMessages"
           [(ngModel)]="esp"
-          />
+        />
         <label class="form-check-label" style="margin-left: 3px">ESP</label>
         <input
           class="form-check-input"
@@ -356,6 +398,7 @@
           style="margin-left: 3px"
           type="checkbox"
           id="notifyMessages"
+          value="Kamera"
           [(ngModel)]="parkingSensors"
         />
         <label class="form-check-label" style="margin-left: 3px"

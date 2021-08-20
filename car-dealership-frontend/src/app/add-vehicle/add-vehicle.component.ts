@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CreateVehicle } from '../model/CreateVehicle';
 import { Mark } from '../model/Mark';
 import { Model } from '../model/Model';
 import { VehicleService } from '../services/vehicle.service';
@@ -11,24 +13,7 @@ import { VehicleService } from '../services/vehicle.service';
 export class AddVehicleComponent implements OnInit {
   public marks: Mark[] = [];
   public models: Model[] = [];
-  public mark: string = '';
-  public model: string= '';
-  public carBody: string = '';
-  public year: string ='';
-  public fuel: string = '';
-  public landMark: string ='';
-  public cubicCapacity: string = '';
-  public power : string = '';
-  public mileage: string = '';
-  public emissionClass: string = '';
-  public drive: string = '';
-  public gearBox: string = '';
-  public numberOfDoors: string = '';
-  public numberOfSeats: string = '';
-  public airConditioning: string = '';
-  public color: string = '';
-  public interiorMaterial: string = '';
-  public price: string = '';
+  public addVehicle: CreateVehicle = new CreateVehicle();
   public airbag: boolean = false;
   public codedKey: boolean = false;
   public abs: boolean = false;
@@ -48,8 +33,9 @@ export class AddVehicleComponent implements OnInit {
   public startStop: boolean = false;
   public reserveWheel: boolean = false;
   public usb: boolean = false;
-  
-  constructor(public vehicleSerivce: VehicleService) {}
+  public files: File[] = [];
+  public formData: FormData = new FormData();
+  constructor(public vehicleSerivce: VehicleService, public router: Router) {}
 
   ngOnInit(): void {
     this.initData();
@@ -60,39 +46,81 @@ export class AddVehicleComponent implements OnInit {
     });
   };
 
+  onChange(event: any): void {
+    for (var i = 0; i < event.target.files.length; i++) {
+      this.files.push(event.target.files[i]);
+    }
+  }
   setModel = (event: any) => {
     let markId = event.target.value;
-    this.mark = markId;
+    this.addVehicle.mark = markId;
     this.vehicleSerivce.getAllModelsByMark(markId).subscribe((res) => {
       this.models = res as Model[];
     });
-  }
-  setSelectedModel = (event:any) => {
-    this.model = event.target.value;
-  }
-  setCarBody = (event:any) => {
-    this.carBody = event.target.value;
-  }
-  setFuel = (event:any) => {
-    this.fuel = event.target.value;
-  }
-  setEmissionClass = (event:any) => {
-    this.emissionClass = event.target.value;
-  }
-  setDrive = (event:any) => {
-    this.drive = event.target.value;
-  }
-  setGearBox = (event:any) => {
-    this.gearBox = event.target.value;
-  }
-  setAirConditioning = (event:any) => {
-    this.airConditioning = event.target.value;
-  }
-  setColor = (event:any) => {
-    this.color = event.target.value;
-  }
-  setInteriorMaterial = (event:any) => {
-    this.interiorMaterial = event.target.value;
-  }
+  };
+  setSelectedModel = (event: any) => {
+    this.addVehicle.model = event.target.value;
+  };
+  setCarBody = (event: any) => {
+    this.addVehicle.carBody = event.target.value;
+  };
+  setFuel = (event: any) => {
+    this.addVehicle.fuel = event.target.value;
+  };
+  setEmissionClass = (event: any) => {
+    this.addVehicle.emissionClass = event.target.value;
+  };
+  setDrive = (event: any) => {
+    this.addVehicle.drive = event.target.value;
+  };
+  setGearBox = (event: any) => {
+    this.addVehicle.gearBox = event.target.value;
+  };
+  setAirConditioning = (event: any) => {
+    this.addVehicle.airConditioning = event.target.value;
+  };
+  setColor = (event: any) => {
+    this.addVehicle.color = event.target.value;
+  };
+  setInteriorMaterial = (event: any) => {
+    this.addVehicle.interiorMaterial = event.target.value;
+  };
 
+  onClick = () => {
+    for (let i = 0; i < this.files.length; i++) {
+      this.formData.append('images', this.files[i], this.files[i].name);
+      this.addVehicle.images.push(this.files[i].name);
+    }
+    this.vehicleSerivce.uploadImages(this.formData).subscribe((res) => {});
+  };
+  onAddVehicle = () => {
+    this.createListOfAccessories();
+    this.vehicleSerivce.createVehicle(this.addVehicle).subscribe((response) => {
+      alert('Uspešno ste dodali vozilo!');
+      this.router.navigate(['']);
+    });
+  };
+
+  createListOfAccessories = () => {
+    this.airbag && this.addVehicle.accessories.push('Airbag');
+    this.codedKey && this.addVehicle.accessories.push('Kodiran ključ');
+    this.abs && this.addVehicle.accessories.push('ABS');
+    this.esp && this.addVehicle.accessories.push('ESP');
+    this.alarm && this.addVehicle.accessories.push('Alarm');
+    this.metalic && this.addVehicle.accessories.push('Metalik');
+    this.tempomat && this.addVehicle.accessories.push('Tempomat');
+    this.navigation && this.addVehicle.accessories.push('Navigacija');
+    this.alloyWheels && this.addVehicle.accessories.push('Alu felne');
+    this.servo && this.addVehicle.accessories.push('Servo volan');
+    this.board && this.addVehicle.accessories.push('Putni računar');
+    this.electricWindows &&
+      this.addVehicle.accessories.push('Električni podizači');
+    this.roofWindow && this.addVehicle.accessories.push('Šiber');
+    this.camera && this.addVehicle.accessories.push('Kamera');
+    this.leatherSteeringVheel &&
+      this.addVehicle.accessories.push('Kožni volan');
+    this.startStop && this.addVehicle.accessories.push('Start-stop');
+    this.reserveWheel && this.addVehicle.accessories.push('Rezervni točak');
+    this.usb && this.addVehicle.accessories.push('USB');
+  };
 }

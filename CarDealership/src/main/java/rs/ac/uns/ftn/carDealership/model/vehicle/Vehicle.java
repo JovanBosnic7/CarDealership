@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -31,19 +32,16 @@ public class Vehicle {
     private Engine engine;
 
     @ManyToMany
-    private Set<Accessories> accessories = new HashSet<>();
+    private Set<ImageModel> images = new HashSet<>();
 
-    @Column(name = "interior_color")
-    private String interiorColor;
+    @ManyToMany
+    private Set<Accessories> accessories = new HashSet<>();
 
     @Column(name = "number_of_seats")
     private int numberOfSeats;
 
     @Column(name = "number_of_doors")
     private int numberOfDoors;
-
-    @Column(name = "chassis_number")
-    private String chassisNumber;
 
     @Column(name = "production_year")
     private int productionYear;
@@ -54,14 +52,14 @@ public class Vehicle {
     @Column(name = "air_conditioning")
     private String airConditioning;
 
+    @Column(name = "chassis_number")
+    private String chassisNumber;
+
     @Column(name = "interior_material")
     private String interiorMaterial;
 
     @Column(name = "gear_box_type")
     private String gearBoxType;
-
-    @Column(name = "gears_number")
-    private int gearsNumber;
 
     @Column(name = "car_body")
     private String carBody;
