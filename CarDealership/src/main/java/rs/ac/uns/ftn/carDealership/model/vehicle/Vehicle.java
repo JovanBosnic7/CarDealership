@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.awt.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -39,6 +38,9 @@ public class Vehicle {
 
     @Column(name = "number_of_seats")
     private int numberOfSeats;
+
+    @Column(name = "price")
+    private int price;
 
     @Column(name = "number_of_doors")
     private int numberOfDoors;

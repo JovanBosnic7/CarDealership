@@ -20,10 +20,25 @@
     >
       <h4 class="text-right" style="margin-top: 50px">Unos fotografija</h4>
       <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-        <input id="upload" class="form-control border-0" type="file" name="files" multiple enctype="mulitpart/form-data" (change)="onChange($event)">
-    </div>
-    <div *ngFor="let f of files">{{f.name}}</div>
-    <button (click) = "onClick()">klikni</button>
+        <input
+          id="upload"
+          class="form-control border-0"
+          type="file"
+          name="files"
+          multiple
+          enctype="mulitpart/form-data"
+          (change)="onChange($event)"
+        />
+      </div>
+      <div *ngFor="let f of files">{{ f.name }}</div>
+      <button *ngIf="!isPhotosUploaded"
+        style="margin-top: 40px"
+        (click)="onClick()"
+        class="btn btn-outline-danger"
+        type="button"
+      >
+        Dodajte fotorgafije
+      </button>
     </div>
     <div class="col-md-5 border-right">
       <div class="p-3 py-5">

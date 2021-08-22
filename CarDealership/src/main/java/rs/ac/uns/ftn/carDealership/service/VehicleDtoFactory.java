@@ -39,6 +39,7 @@ public class VehicleDtoFactory {
         vehicle.setCarBodyColor(dto.getColor());
         vehicle.setVehicle_status("Available");
         vehicle.setChassisNumber(dto.getChassisNumber());
+        vehicle.setPrice(Integer.parseInt(dto.getPrice()));
         EngineSpecification engineSpecification = buildEngineSpecification(dto);
         Engine engine = buildEngine(dto);
         engine.setEngineSpecification(engineSpecification);

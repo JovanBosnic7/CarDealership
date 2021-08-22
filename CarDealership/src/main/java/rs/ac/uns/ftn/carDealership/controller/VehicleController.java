@@ -47,4 +47,13 @@ public class VehicleController {
         imageFactory.uploadImages(images);
     }
 
+    @GetMapping("/getAll")
+    public ResponseEntity<?> getAllVehicles() {
+        return new ResponseEntity<>(vehicleService.getAllVehicles(), HttpStatus.OK);
+    }
+    @GetMapping("/getById/{vehicleId}")
+    public ResponseEntity<?> getVehicleById(@PathVariable String vehicleId) {
+        return new ResponseEntity<>(vehicleService.getVehicleById(vehicleId), HttpStatus.OK);
+    }
+
 }

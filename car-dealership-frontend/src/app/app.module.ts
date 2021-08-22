@@ -13,13 +13,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TokenInterceptor } from './interceptor/TokenInterceptor';
 import { RegistrationComponent } from './registration/registration.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { SingleVehicleComponent } from './single-vehicle/single-vehicle.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'cars', component: CarsHomepageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
-  { path: 'addVehicle', component:AddVehicleComponent},
+  { path: 'addVehicle', component: AddVehicleComponent },
+  {path: 'single-vehicle/:vehicleId', component: SingleVehicleComponent},
   { path: '**', redirectTo: '/404' },
 ];
 
@@ -32,6 +35,7 @@ const appRoutes: Routes = [
     LoginComponent,
     RegistrationComponent,
     AddVehicleComponent,
+    SingleVehicleComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +44,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     NgbModule,
+    IvyCarouselModule,
   ],
   exports: [RouterModule],
   providers: [

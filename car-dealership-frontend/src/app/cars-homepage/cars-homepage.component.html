@@ -1,1 +1,111 @@
-<p>cars-homepage works!</p>
+<section class="search-sec">
+  <div class="container">
+    <form action="#" method="post" novalidate="novalidate">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row" style="margin-top:30px">
+            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+              <select
+                (change)="setModel($event)"
+                class="form-control custom-select bg-white border-md search-slt"
+              >
+                <option>Izaberite marku</option>
+                <option *ngFor="let mark of marks" value="{{ mark.markId }}">
+                  {{ mark.name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+              <select
+                (change)="setSelectedModel($event)"
+                class="form-control custom-select bg-white border-md search-slt"
+              >
+                <option>Izaberite model</option>
+                <option
+                  *ngFor="let model of models"
+                  value="{{ model.modelId }}"
+                >
+                  {{ model.name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+              <input
+                type="text"
+                class="form-control search-slt"
+                placeholder="Unesite najvišu cenu vozila"
+                (change)="onPriceChange($event)"
+              />
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+              <button
+                type="button"
+                (click)="onSearchClick()"
+                class="btn btn-danger wrn-btn"
+              >
+                Pretražite
+              </button>
+            </div>
+            <a (click) = "onSortClick()" style="margin-top: 10px; color:#ff6464; cursor: pointer; text-decoration: underline;">Sortirajte po ceni od najniže</a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<button
+  class="btn btn-danger wrn-btn"
+  style="width: 200px"
+  (click)="onResetFilters()"
+  *ngIf="isSearchClicked"
+>
+  Poništite filtere
+</button>
+<div class="container">
+  <div class="row" id="ads">
+    <!-- Category Card -->
+    <div
+      class="col-md-4"
+      style="margin-top: 30px"
+      *ngFor="let vehicle of vehicles"
+    >
+      <div class="card rounded">
+        <div class="card-image" style="margin-bottom: 20px">
+          <span class="card-notify-year" style="background-color: #ff6464">{{
+            vehicle.productionYear
+          }}</span>
+          <img
+            class="img-fluid"
+            [src]="vehicle.images[0].picByte"
+            alt="Alternate Text"
+            style="height: 200px; width: 100%; padding: 3px"
+          />
+        </div>
+        <div class="card-image-overlay m-auto">
+          <span
+            class="card-detail-badge"
+            style="background-color: #ff6464; margin-right: 10px"
+            >{{ vehicle.carBody }}</span
+          >
+          <span
+            class="card-detail-badge"
+            style="background-color: #ff6464; margin-right: 10px"
+            >{{ vehicle.price }} €</span
+          >
+          <span class="card-detail-badge" style="background-color: #ff6464"
+            >{{ vehicle.mileage }} km</span
+          >
+        </div>
+        <div class="card-body text-center">
+          <div class="ad-title m-auto">
+            <h5>
+              {{ vehicle.model.mark.name }} {{ vehicle.model.name }}
+              {{ vehicle.engine.engineSpecification.engineModel }}
+            </h5>
+          </div>
+          <a class="btn btn-outline-danger" href="/single-vehicle/{{vehicle.vehicleId}}">Pogledajte detaljnije</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

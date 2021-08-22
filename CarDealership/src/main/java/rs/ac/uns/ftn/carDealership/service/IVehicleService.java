@@ -10,4 +10,6 @@ public interface IVehicleService {
     List<Mark> getAllMarks();
     List<Model> getAllModelsByMark(String markId);
     Vehicle createVehicle(CreateVehicle dto);
+    Vehicle getVehicleById(String vehicleId);
+    List<Vehicle> getAllVehicles();
 }

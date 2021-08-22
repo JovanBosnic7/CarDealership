@@ -7,13 +7,13 @@
         <path
           d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
       </svg><a style="margin-left: 10px; margin-right: 10px;"
-        href="mailto:contact@example.com">autokucabosnic@gmail.com</a>
+        href="mailto:contact@example.com">autokuca@mail.com</a>
       <svg svg style="color: red;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
         class="bi bi-phone" viewBox="0 0 16 16">
         <path
           d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z" />
         <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-      </svg> <a style="margin-left: 10px; margin-right: 10px;" href="mailto:contact@example.com">+381 69 1663 179</a>
+      </svg> <a style="margin-left: 10px; margin-right: 10px;" href="mailto:contact@example.com">+381 12 345 678</a>
     </div>
     <div class="social-links d-none d-md-block">
       <a href="#" class="twitter"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -43,33 +43,15 @@
 <header id="header" class="d-flex align-items-center">
   <div class="container d-flex align-items-center justify-content-between">
 
-    <a href="index.html" class="logo"><img src="../../assets/img/clients/bbb.png" alt="" class="img-fluid"></a>
+    <a href="index.html" class="logo"><img src="../../assets/img/clients/bb.png" alt="" class="img-fluid"></a>
 
     <nav id="navbar" class="navbar">
       <ul>
         <li><a class="nav-link scrollto active" href="#hero">Početna</a></li>
-        <li><a class="nav-link scrollto" href="/cars">Automobili</a></li>
+        <li><a class="nav-link scrollto" href="/cars">Vozila</a></li>
         <li><a class="nav-link scrollto" href="#about">O nama</a></li>
-        <li><a class="nav-link scrollto" href="#services">Usluge</a></li>
-        <li><a class="nav-link scrollto" href="#pricing">Akcije</a></li>
+        <li><a class="nav-link scrollto" href="#contact">Kontakt</a></li>
         <li><a *ngIf = "this.authService.getRole() === 'admin'" class="nav-link scrollto" href="/addVehicle">Dodajte vozilo</a></li>
-        <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-          <ul>
-            <li><a href="#">Drop Down 1</a></li>
-            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-              <ul>
-                <li><a href="#">Deep Drop Down 1</a></li>
-                <li><a href="#">Deep Drop Down 2</a></li>
-                <li><a href="#">Deep Drop Down 3</a></li>
-                <li><a href="#">Deep Drop Down 4</a></li>
-                <li><a href="#">Deep Drop Down 5</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Drop Down 2</a></li>
-            <li><a href="#">Drop Down 3</a></li>
-            <li><a href="#">Drop Down 4</a></li>
-          </ul>
-        </li>
         <li><a *ngIf = "!this.authService.isLoggedIn" class="nav-link scrollto" href="/login">Prijavite se</a></li>
         <li><a *ngIf = "this.authService.isLoggedIn" (click) ="onLogout()" class="nav-link scrollto" href="">Odjavite se</a></li>
       </ul>

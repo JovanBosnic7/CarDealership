@@ -35,6 +35,7 @@ export class AddVehicleComponent implements OnInit {
   public usb: boolean = false;
   public files: File[] = [];
   public formData: FormData = new FormData();
+  public isPhotosUploaded: boolean = false;
   constructor(public vehicleSerivce: VehicleService, public router: Router) {}
 
   ngOnInit(): void {
@@ -92,8 +93,13 @@ export class AddVehicleComponent implements OnInit {
       this.addVehicle.images.push(this.files[i].name);
     }
     this.vehicleSerivce.uploadImages(this.formData).subscribe((res) => {});
+    this.isPhotosUploaded = true;
   };
   onAddVehicle = () => {
+    if (!this.isPhotosUploaded) {
+      alert('Prvo kliknite Dodajte fotografije pa zatim Dodajte vozilo');
+      return;
+    }
     this.createListOfAccessories();
     this.vehicleSerivce.createVehicle(this.addVehicle).subscribe((response) => {
       alert('Uspešno ste dodali vozilo!');

@@ -2,18 +2,17 @@ package rs.ac.uns.ftn.carDealership.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateVehicle;
 import rs.ac.uns.ftn.carDealership.model.vehicle.*;
 import rs.ac.uns.ftn.carDealership.repository.*;
 import rs.ac.uns.ftn.carDealership.service.IVehicleService;
 import rs.ac.uns.ftn.carDealership.service.VehicleDtoFactory;
-
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
+import java.util.List;
+import java.util.zip.DataFormatException;
+import java.util.zip.Inflater;
 
 @Service
 public class VehicleServiceImpl implements IVehicleService {
@@ -49,5 +48,40 @@ public class VehicleServiceImpl implements IVehicleService {
         return vehicle;
     }
 
+    @Override
+    public Vehicle getVehicleById(String vehicleId) {
+        Vehicle vehicle = vehicleRepository.findById(UUID.fromString(vehicleId)).get();
+        for(ImageModel imageModel : vehicle.getImages()) {
+            imageModel.setPicByte(decompressBytes(imageModel.getPicByte()));
+        }
+        return vehicle;
+    }
 
+    @Override
+    public List<Vehicle> getAllVehicles() {
+        ArrayList<Vehicle> vehicles = (ArrayList<Vehicle>) vehicleRepository.findAll();
+        for (Vehicle vehicle : vehicles) {
+            for (ImageModel imageModel : vehicle.getImages()) {
+                imageModel.setPicByte(decompressBytes(imageModel.getPicByte()));
+            }
+        }
+        return vehicles;
+    }
+
+    public static byte[] decompressBytes(byte[] data) {
+        Inflater inflater = new Inflater();
+        inflater.setInput(data);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
+        byte[] buffer = new byte[1024];
+        try {
+            while (!inflater.finished()) {
+                int count = inflater.inflate(buffer);
+                outputStream.write(buffer, 0, count);
+            }
+            outputStream.close();
+        } catch (IOException ioe) {
+        } catch (DataFormatException e) {
+        }
+        return outputStream.toByteArray();
+    }
 }
