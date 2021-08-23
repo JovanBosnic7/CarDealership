@@ -47,7 +47,7 @@
                         <h6 class="mb-0">Godina: {{vehicle.productionYear}}</h6>
                       </div>
                       <div class="col-sm-3 text-secondary">
-                        <h6 class="mb-0">Kilometraža: {{vehicle.mileage}}</h6>
+                        <h6 class="mb-0">Kilometraža: {{vehicle.mileage}} km</h6>
                       </div>
                   </div>
                   <hr>
@@ -92,9 +92,9 @@
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
-                     <h6>Sigurnost</h6>
+                     <h4>Sigurnost</h4>
                      <div *ngFor = "let item of vehicle.accessories">
-                     <h6 class="mb-0 text-secondary" *ngIf = "item.name ==='Airbag' || 
+                     <h6 class="mb-2 text-secondary" *ngIf = "item.name ==='Airbag' || 
                      item.name ==='Kodiran ključ' || 
                      item.name === 'ABS' || 
                      item.name === 'ESP' || 
@@ -106,9 +106,9 @@
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
-                    <h6>Dodatna oprema</h6>
+                    <h4>Dodatna oprema</h4>
                     <div *ngFor = "let item of vehicle.accessories">
-                        <h6 class="mb-0 text-secondary" *ngIf = "item.name !=='Airbag' && 
+                        <h6 class="mb-2 text-secondary" *ngIf = "item.name !=='Airbag' && 
                         item.name !=='Kodiran ključ' && 
                         item.name !== 'ABS' &&
                         item.name !== 'ESP' && 
