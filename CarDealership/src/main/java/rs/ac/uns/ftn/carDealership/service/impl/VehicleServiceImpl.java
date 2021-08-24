@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.carDealership.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import rs.ac.uns.ftn.carDealership.model.dto.CreateAction;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateVehicle;
 import rs.ac.uns.ftn.carDealership.model.vehicle.*;
 import rs.ac.uns.ftn.carDealership.repository.*;
@@ -72,6 +73,26 @@ public class VehicleServiceImpl implements IVehicleService {
     @Override
     public void save(Vehicle vehicle) {
         this.vehicleRepository.save(vehicle);
+    }
+
+    @Override
+    public void sellVehicle(String vehicleId) {
+        Vehicle vehicle = vehicleRepository.getById(UUID.fromString(vehicleId));
+        vehicle.setVehicle_status("Sold");
+        vehicleRepository.save(vehicle);
+    }
+
+    @Override
+    public void createAction(CreateAction createAction) {
+        Vehicle vehicle = vehicleRepository.findById(UUID.fromString(createAction.getVehicleId())).get();
+        vehicle.setPrice(calculatePrice(vehicle.getPrice(), createAction.getActionPrecentage()));
+        vehicle.setHasAction(true);
+        vehicleRepository.save(vehicle);
+    }
+
+    private int calculatePrice(int vehiclePrice, String actionPrecentage) {
+        int precentage = Integer.parseInt(actionPrecentage);
+        return vehiclePrice - (vehiclePrice * precentage / 100);
     }
 
     public static byte[] decompressBytes(byte[] data) {

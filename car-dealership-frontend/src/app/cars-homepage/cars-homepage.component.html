@@ -71,6 +71,7 @@
     >
       <div *ngIf="vehicle.vehicle_status === 'Available'" class="card rounded">
         <div class="card-image" style="margin-bottom: 20px">
+          <span *ngIf="vehicle.hasAction" class="card-notify-badge" style="background-color: #ff6464;">Vozilo na akciji</span>
           <span class="card-notify-year" style="background-color: #ff6464">{{
             vehicle.productionYear
           }}</span>

@@ -2,9 +2,10 @@
   <div class="main-body">
     <div class="row gutters-sm">
       <div class="col-md-4 mb-3">
-        <div class="card">
+        <div class="card" style="margin-bottom: 30px;"
+        >
           <div class="card-body">
-            <carousel cellWidth="100%">
+            <carousel cellWidth="100%" >
               <div class="carousel-cell" *ngFor="let image of vehicle.images">
                 <img [src]="image.picByte" />
               </div>
@@ -12,12 +13,28 @@
           </div>
         </div>
         <button
-          *ngIf="this.authService.getRole() === 'admin'"
+          *ngIf="this.authService.getRole() === 'admin' && !isActionClicked"
           class="btn btn-danger wrn-btn"
-          style="width: 100%; margin-top: 30px"
+          style="width: 100%;"
+          (click)="onActionClick()"
         >
           Postavite akciju za vozilo
         </button>
+        <button
+          *ngIf="actionPrecent !== ''"
+          class="btn btn-danger wrn-btn"
+          style="width: 100%;"
+          (click)="createAction()"
+        >
+          Postavite akciju za vozilo
+        </button>
+        <input
+          *ngIf="isActionClicked"
+          type="text"
+          class="form-control search-slt"
+          placeholder="Unesite procenat popusta"
+          [(ngModel)]="actionPrecent"
+        />
         <button
           *ngIf="this.authService.getRole() === 'admin'"
           (click)="onSellVehicleClick()"

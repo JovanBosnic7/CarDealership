@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import rs.ac.uns.ftn.carDealership.model.dto.CreateAction;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateVehicle;
 import rs.ac.uns.ftn.carDealership.model.vehicle.ImageModel;
 import rs.ac.uns.ftn.carDealership.model.vehicle.Vehicle;
@@ -29,8 +30,6 @@ public class VehicleController {
     ImageRepository imageRepository;
     @Autowired
     ImageFactory imageFactory;
-    @Autowired
-    VehicleRepository vehicleRepository;
 
     @GetMapping("/getMarks")
     public ResponseEntity<?> getMarks() {
@@ -53,11 +52,15 @@ public class VehicleController {
     }
 
     @PostMapping("/sellVehicle")
-    public ResponseEntity<?> uploadImage(@RequestBody String vehicleId) {
-        Vehicle vehicle = vehicleRepository.getById(UUID.fromString(vehicleId));
-        vehicle.setVehicle_status("Sold");
-        vehicleRepository.save(vehicle);
+    public ResponseEntity<?> sellVehicle(@RequestBody String vehicleId) {
+        vehicleService.sellVehicle(vehicleId);
         return new ResponseEntity<>("Vehicle successfully sold", HttpStatus.OK);
+    }
+
+    @PostMapping("/createAction")
+    public ResponseEntity<?> createAction(@RequestBody CreateAction createAction) {
+        vehicleService.createAction(createAction);
+        return new ResponseEntity<>("Actrion created", HttpStatus.OK);
     }
 
     @GetMapping("/getAll")

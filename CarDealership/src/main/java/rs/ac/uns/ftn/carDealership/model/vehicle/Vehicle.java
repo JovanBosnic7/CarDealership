@@ -39,6 +39,9 @@ public class Vehicle {
     @Column(name = "number_of_seats")
     private int numberOfSeats;
 
+    @Column(name = "has_action")
+    private Boolean hasAction;
+
     @Column(name = "price")
     private int price;
 

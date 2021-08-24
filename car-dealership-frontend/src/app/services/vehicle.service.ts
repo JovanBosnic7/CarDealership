@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { CreateAction } from '../model/CreateAction';
 import { CreateVehicle } from '../model/CreateVehicle';
 
 @Injectable({
@@ -73,6 +74,15 @@ export class VehicleService {
   sellVehicle = (vehicleId: string) => {
     return this.http
       .post('http://localhost:8080/api/vehicles/sellVehicle', vehicleId)
+      .pipe(
+        map((responseData: any) => {
+          return responseData;
+        })
+      );
+  };
+  createAction = (createAction: CreateAction) => {
+    return this.http
+      .post('http://localhost:8080/api/vehicles/createAction', createAction)
       .pipe(
         map((responseData: any) => {
           return responseData;
