@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateVehicle;
 import rs.ac.uns.ftn.carDealership.model.vehicle.ImageModel;
+import rs.ac.uns.ftn.carDealership.model.vehicle.Vehicle;
 import rs.ac.uns.ftn.carDealership.repository.ImageRepository;
 import rs.ac.uns.ftn.carDealership.service.IVehicleService;
 import rs.ac.uns.ftn.carDealership.service.ImageFactory;
@@ -45,6 +46,14 @@ public class VehicleController {
     @PostMapping("/uploadImages")
     public void uploadImage(@RequestBody ArrayList<MultipartFile> images) throws IOException {
         imageFactory.uploadImages(images);
+    }
+
+    @PostMapping("/sellVehicle")
+    public ResponseEntity<?> uploadImage(@RequestBody String vehicleId) {
+        Vehicle vehicle = vehicleService.getVehicleById(vehicleId);
+        vehicle.setVehicle_status("Sold");
+        vehicleService.save(vehicle);
+        return new ResponseEntity<>("Vehicle successfully sold", HttpStatus.OK);
     }
 
     @GetMapping("/getAll")

@@ -7,6 +7,7 @@ import rs.ac.uns.ftn.carDealership.model.vehicle.*;
 import rs.ac.uns.ftn.carDealership.repository.*;
 import rs.ac.uns.ftn.carDealership.service.IVehicleService;
 import rs.ac.uns.ftn.carDealership.service.VehicleDtoFactory;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.*;
@@ -51,7 +52,7 @@ public class VehicleServiceImpl implements IVehicleService {
     @Override
     public Vehicle getVehicleById(String vehicleId) {
         Vehicle vehicle = vehicleRepository.findById(UUID.fromString(vehicleId)).get();
-        for(ImageModel imageModel : vehicle.getImages()) {
+        for (ImageModel imageModel : vehicle.getImages()) {
             imageModel.setPicByte(decompressBytes(imageModel.getPicByte()));
         }
         return vehicle;
@@ -66,6 +67,11 @@ public class VehicleServiceImpl implements IVehicleService {
             }
         }
         return vehicles;
+    }
+
+    @Override
+    public void save(Vehicle vehicle) {
+        this.vehicleRepository.save(vehicle);
     }
 
     public static byte[] decompressBytes(byte[] data) {

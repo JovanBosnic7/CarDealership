@@ -39,7 +39,7 @@ export class CarsHomepageComponent implements OnInit {
   };
   onPriceChange = (event: any) => {
     this.price = event.target.value;
-  }
+  };
   setSelectedModel = (event: any) => {
     this.model = event.target.value;
   };
@@ -57,16 +57,18 @@ export class CarsHomepageComponent implements OnInit {
         (vehicle) => vehicle.model.mark.markId === this.mark
       );
     }
-    if(this.price !== '') {
+    if (this.price !== '') {
       this.vehicles = this.vehicles.filter(
         (vehicle) => vehicle.price <= this.price
       );
     }
   };
   onResetFilters = () => {
-   window.location.href = 'cars'
+    window.location.href = 'cars';
   };
   onSortClick = () => {
-    this.vehicles = this.vehicles.sort((vehicle1, vehicle2) => vehicle1.price - vehicle2.price);
-  }
+    this.vehicles = this.vehicles.sort(
+      (vehicle1, vehicle2) => vehicle1.price - vehicle2.price
+    );
+  };
 }

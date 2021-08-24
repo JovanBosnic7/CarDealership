@@ -70,4 +70,13 @@ export class VehicleService {
         })
       );
   };
+  sellVehicle = (vehicleId: string) => {
+    return this.http
+      .post('http://localhost:8080/api/vehicles/sellVehicle', vehicleId)
+      .pipe(
+        map((responseData: any) => {
+          return responseData;
+        })
+      );
+  };
 }

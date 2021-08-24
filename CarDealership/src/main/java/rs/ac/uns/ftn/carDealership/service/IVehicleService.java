@@ -12,4 +12,5 @@ public interface IVehicleService {
     Vehicle createVehicle(CreateVehicle dto);
     Vehicle getVehicleById(String vehicleId);
     List<Vehicle> getAllVehicles();
+    void save(Vehicle vehicle);
 }

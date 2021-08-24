@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 import { VehicleService } from '../services/vehicle.service';
 
 @Component({
@@ -12,7 +13,9 @@ export class SingleVehicleComponent implements OnInit {
   public vehicle: any;
   constructor(
     public route: ActivatedRoute,
-    public vehicleService: VehicleService
+    public vehicleService: VehicleService,
+    public authService: AuthService,
+    public router: Router
   ) {}
 
   ngOnInit(): void {
@@ -22,6 +25,14 @@ export class SingleVehicleComponent implements OnInit {
   initData = () => {
     this.vehicleService.getVehicleById(this.vehicleId).subscribe((res) => {
       this.vehicle = res as any;
+    });
+  };
+
+  onSellVehicleClick = () => {
+    this.vehicleService.sellVehicle(this.vehicleId).subscribe((res) => {
+      this.vehicle = res as any;
+      alert('Vozilo uspešno uklonjeno iz ponude!');
+      this.router.navigate(['']);
     });
   };
 }
