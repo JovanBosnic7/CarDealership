@@ -11,12 +11,21 @@
             </carousel>
           </div>
         </div>
-        <button *ngIf = "this.authService.getRole() === 'admin'" class="btn btn-danger wrn-btn" style="width:100%; margin-top: 30px;">
+        <button
+          *ngIf="this.authService.getRole() === 'admin'"
+          class="btn btn-danger wrn-btn"
+          style="width: 100%; margin-top: 30px"
+        >
           Postavite akciju za vozilo
-         </button>
-         <button *ngIf = "this.authService.getRole() === 'admin'" (click)="onSellVehicleClick()"  class="btn btn-danger wrn-btn" style="width:100%; margin-top: 30px;">
-         Uklonite vozilo iz ponude
-         </button>
+        </button>
+        <button
+          *ngIf="this.authService.getRole() === 'admin'"
+          (click)="onSellVehicleClick()"
+          class="btn btn-danger wrn-btn"
+          style="width: 100%; margin-top: 30px"
+        >
+          Uklonite vozilo iz ponude
+        </button>
       </div>
       <div class="col-md-8">
         <div class="card mb-3">

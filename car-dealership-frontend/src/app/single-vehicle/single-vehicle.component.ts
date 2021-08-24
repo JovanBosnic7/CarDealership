@@ -29,10 +29,8 @@ export class SingleVehicleComponent implements OnInit {
   };
 
   onSellVehicleClick = () => {
-    this.vehicleService.sellVehicle(this.vehicleId).subscribe((res) => {
-      this.vehicle = res as any;
-      alert('Vozilo uspešno uklonjeno iz ponude!');
-      this.router.navigate(['']);
-    });
+    this.vehicleService.sellVehicle(this.vehicleId).subscribe((res) => {});
+    alert('Vozilo uspešno uklonjeno iz ponude!');
+    this.router.navigate(['/cars']);
   };
 }

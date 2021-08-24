@@ -10,6 +10,7 @@ import rs.ac.uns.ftn.carDealership.model.dto.CreateVehicle;
 import rs.ac.uns.ftn.carDealership.model.vehicle.ImageModel;
 import rs.ac.uns.ftn.carDealership.model.vehicle.Vehicle;
 import rs.ac.uns.ftn.carDealership.repository.ImageRepository;
+import rs.ac.uns.ftn.carDealership.repository.VehicleRepository;
 import rs.ac.uns.ftn.carDealership.service.IVehicleService;
 import rs.ac.uns.ftn.carDealership.service.ImageFactory;
 
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api/vehicles", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -27,6 +29,8 @@ public class VehicleController {
     ImageRepository imageRepository;
     @Autowired
     ImageFactory imageFactory;
+    @Autowired
+    VehicleRepository vehicleRepository;
 
     @GetMapping("/getMarks")
     public ResponseEntity<?> getMarks() {
@@ -50,9 +54,9 @@ public class VehicleController {
 
     @PostMapping("/sellVehicle")
     public ResponseEntity<?> uploadImage(@RequestBody String vehicleId) {
-        Vehicle vehicle = vehicleService.getVehicleById(vehicleId);
+        Vehicle vehicle = vehicleRepository.getById(UUID.fromString(vehicleId));
         vehicle.setVehicle_status("Sold");
-        vehicleService.save(vehicle);
+        vehicleRepository.save(vehicle);
         return new ResponseEntity<>("Vehicle successfully sold", HttpStatus.OK);
     }
 
@@ -60,6 +64,7 @@ public class VehicleController {
     public ResponseEntity<?> getAllVehicles() {
         return new ResponseEntity<>(vehicleService.getAllVehicles(), HttpStatus.OK);
     }
+
     @GetMapping("/getById/{vehicleId}")
     public ResponseEntity<?> getVehicleById(@PathVariable String vehicleId) {
         return new ResponseEntity<>(vehicleService.getVehicleById(vehicleId), HttpStatus.OK);

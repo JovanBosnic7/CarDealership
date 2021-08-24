@@ -69,7 +69,7 @@
       style="margin-top: 30px"
       *ngFor="let vehicle of vehicles"
     >
-      <div class="card rounded">
+      <div *ngIf="vehicle.vehicle_status === 'Available'" class="card rounded">
         <div class="card-image" style="margin-bottom: 20px">
           <span class="card-notify-year" style="background-color: #ff6464">{{
             vehicle.productionYear
