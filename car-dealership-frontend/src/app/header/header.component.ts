@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientService } from '../client.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -7,11 +8,23 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public authService: AuthService) {}
+  public carDealership: any;
 
-  ngOnInit(): void {}
+  constructor(
+    public authService: AuthService,
+    public clientService: ClientService
+  ) {}
+
+  ngOnInit(): void {
+    this.initData();
+  }
 
   onLogout = () => {
     this.authService.doLogout();
+  };
+  initData = () => {
+    this.clientService.getCarDealership().subscribe((res) => {
+      this.carDealership = res as any;
+    });
   };
 }

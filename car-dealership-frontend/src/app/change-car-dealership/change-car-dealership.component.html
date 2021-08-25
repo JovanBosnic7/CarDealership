@@ -1,0 +1,52 @@
+<div class="registration-form">
+  <form>
+    <div class="form-icon">
+      <span><i class="icon icon-user"></i></span>
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control item"
+        id="username"
+        placeholder="Ime auto kuće"
+        value="{{ carDealership.name }}"
+        (change)="onChange($event)"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control item"
+        id="password"
+        placeholder="Adresa"
+        value="{{ carDealership.address }}"
+        (change)="onChangeA($event)"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control item"
+        id="email"
+        placeholder="Imejl"
+        value="{{ carDealership.email }}"
+        (change) = "onChangeE($event)"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control item"
+        id="phone-number"
+        placeholder="Broj telefona"
+        value="{{ carDealership.phoneNumber }}"
+        (change) = "onChangeP($event)"
+      />
+    </div>
+    <div class="form-group">
+      <button type="button" (click) = "onClick()" class="btn btn-danger create-account">
+        Izmeni podatke
+      </button>
+    </div>
+  </form>
+</div>
