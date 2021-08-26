@@ -16,6 +16,8 @@ import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { SingleVehicleComponent } from './single-vehicle/single-vehicle.component';
 import { ChangeCarDealershipComponent } from './change-car-dealership/change-car-dealership.component';
+import { TestDriveComponent } from './test-drive/test-drive.component';
+import { TestDrive } from './model/TestDrive';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
@@ -25,6 +27,7 @@ const appRoutes: Routes = [
   { path: 'addVehicle', component: AddVehicleComponent },
   { path: 'single-vehicle/:vehicleId', component: SingleVehicleComponent },
   { path: 'changeCarDealership', component: ChangeCarDealershipComponent },
+  { path: 'testDrives', component: TestDriveComponent },
   { path: '**', redirectTo: '/404' },
 ];
 
@@ -39,6 +42,7 @@ const appRoutes: Routes = [
     AddVehicleComponent,
     SingleVehicleComponent,
     ChangeCarDealershipComponent,
+    TestDriveComponent,
   ],
   imports: [
     BrowserModule,

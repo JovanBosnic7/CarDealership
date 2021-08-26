@@ -8,9 +8,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.carDealership.model.carDealership.CarDealership;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateClient;
+import rs.ac.uns.ftn.carDealership.model.dto.CreateTestDrive;
 import rs.ac.uns.ftn.carDealership.repository.CarDealershipRepository;
 import rs.ac.uns.ftn.carDealership.service.ClientDtoFactory;
 import rs.ac.uns.ftn.carDealership.service.IClientService;
+
+import java.text.ParseException;
 
 @RestController
 @RequestMapping(value = "/api/clients", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -42,4 +45,17 @@ public class ClientController {
         this.carDealershipRepository.save(carDealership);
         return new ResponseEntity<>("Car dealership successfully updated", HttpStatus.OK);
     }
+
+    @PostMapping("/createTestDrive")
+    public ResponseEntity<?> createTestDrive(@RequestBody CreateTestDrive dto) throws ParseException {
+        this.clientService.createTestDrive(dto);
+        return new ResponseEntity<>("Test drive successfully created", HttpStatus.OK);
+    }
+    @GetMapping("/getAllTestDrives/{clientId}")
+    public ResponseEntity<?> getAllTestDrives(@PathVariable String clientId) {
+        System.out.println("**************************** controler *****************");
+        System.out.println(clientId);
+        return new ResponseEntity<>(clientService.getAllTestDrives(clientId), HttpStatus.OK);
+    }
+
 }

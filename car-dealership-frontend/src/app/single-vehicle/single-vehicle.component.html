@@ -21,6 +21,29 @@
           Postavite akciju za vozilo
         </button>
         <button
+        *ngIf="this.authService.getRole() === 'client' && !isTestDriveClicked"
+        class="btn btn-danger wrn-btn"
+        style="width: 100%;"
+        (click)="onTestDriveClick()"
+      >
+        Zakažite test vožnju
+      </button>
+      <input
+          *ngIf="isTestDriveClicked"
+          type="date"
+          class="form-control search-slt"
+          placeholder="Unesite procenat popusta"
+          [(ngModel)]="testDriveDate"
+        />
+        <button
+        *ngIf="this.authService.getRole() === 'client' && testDriveDate !== ''"
+        class="btn btn-danger wrn-btn"
+        style="width: 100%;"
+        (click)="scheduleTestDrive()"
+      >
+        Zakažite test vožnju
+      </button>
+        <button
           *ngIf="actionPrecent !== ''"
           class="btn btn-danger wrn-btn"
           style="width: 100%;"

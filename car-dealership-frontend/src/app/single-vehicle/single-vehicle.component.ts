@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CreateAction } from '../model/CreateAction';
+import { TestDrive } from '../model/TestDrive';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 import { VehicleService } from '../services/vehicle.service';
 
 @Component({
@@ -14,11 +16,14 @@ export class SingleVehicleComponent implements OnInit {
   public vehicle: any;
   public actionPrecent: string = '';
   public isActionClicked: boolean = false;
+  public isTestDriveClicked: boolean = false;
+  public testDriveDate: string = '';
   constructor(
     public route: ActivatedRoute,
     public vehicleService: VehicleService,
     public authService: AuthService,
-    public router: Router
+    public router: Router,
+    public userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +43,18 @@ export class SingleVehicleComponent implements OnInit {
   };
   onActionClick = () => {
     this.isActionClicked = true;
+  };
+  onTestDriveClick = () => {
+    this.isTestDriveClicked = true;
+  };
+  scheduleTestDrive = () => {
+    let testDrive: TestDrive = new TestDrive();
+    testDrive.clientId = this.authService.getId() as string;
+    testDrive.vehicleId = this.vehicleId;
+    testDrive.dateOfTestDrive = this.testDriveDate;
+    this.userService.createTestDrive(testDrive).subscribe((res) => {});
+    alert('Test vožnja uspešno zakazana!');
+    this.router.navigate(['/cars']);
   };
   onChange = (event: any) => {
     this.actionPrecent = event.target.value;
