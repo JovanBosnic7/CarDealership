@@ -44,6 +44,20 @@ export class UserService {
         })
       );
   };
+
+  getPrices = () => {
+    return this.http.get('http://localhost:8080/api/clients/getAllPrices').pipe(
+      map((responseData: any) => {
+        for (let i = 0; i < responseData.length; i++) {
+          responseData[i].dateOfSetting = new Date(
+            responseData[i].dateOfSetting
+          ).toLocaleDateString();
+        }
+        return responseData;
+      })
+    );
+  };
+
   createTestDrive = (dto: TestDrive) => {
     return this.http
       .post('http://localhost:8080/api/clients/createTestDrive', dto)

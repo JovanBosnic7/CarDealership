@@ -42,12 +42,12 @@
 			  </td>
             <td data-name="del">
               <button
-			  *ngIf = "this.authService.getRole() === 'client'"
+			  *ngIf = "this.authService.getRole() === 'client' && td.status === 'Kreirana'"
                 name="del0"
                 class="btn btn-danger glyphicon glyphicon-remove row-remove"
                 (click)="onCancel(td.id)"
               >
-                <span aria-hidden="true">×</span>
+                <span aria-hidden="true">× Otkaži test vožnju</span>
               </button>
 			  <button
 			  *ngIf = "this.authService.getRole() === 'admin' && td.status === 'Kreirana'"

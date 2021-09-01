@@ -13,13 +13,13 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "price_lists")
-public class PriceList {
+@Table(name = "prices")
+public class Price {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "price_list_id", nullable = false, unique = true)
-    private UUID priceListId;
+    @Column(name = "price_id", nullable = false, unique = true)
+    private UUID priceId;
 
     @Column(name = "price")
     private double price;

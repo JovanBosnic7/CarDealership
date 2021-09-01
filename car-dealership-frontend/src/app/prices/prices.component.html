@@ -1,0 +1,36 @@
+<div class="container" style="margin-top: 30px">
+  <div class="row clearfix">
+    <div class="col-md-12 table-responsive">
+      <table
+        class="table table-bordered table-hover table-sortable"
+        id="tab_logic"
+      >
+        <thead>
+          <tr>
+            <th class="text-center">Vozilo</th>
+            <th class="text-center">Cena</th>
+            <th class="text-center">Datum postavljanja</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            id="addr0"
+            data-id="0"
+            class="hidden"
+            *ngFor="let price of prices"
+          >
+            <td data-name="name">
+              {{price.vehicle.model.mark.name}} {{price.vehicle.model.name}} {{price.vehicle.engine.engineSpecification.engineModel}}
+            </td>
+            <td data-name="mail">
+                {{price.price}} €
+            </td>
+            <td data-name="desc">
+                {{price.dateOfSetting}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

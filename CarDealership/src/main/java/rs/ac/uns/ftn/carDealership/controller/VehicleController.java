@@ -8,18 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateAction;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateVehicle;
-import rs.ac.uns.ftn.carDealership.model.vehicle.ImageModel;
-import rs.ac.uns.ftn.carDealership.model.vehicle.Vehicle;
 import rs.ac.uns.ftn.carDealership.repository.ImageRepository;
-import rs.ac.uns.ftn.carDealership.repository.VehicleRepository;
 import rs.ac.uns.ftn.carDealership.service.IVehicleService;
 import rs.ac.uns.ftn.carDealership.service.ImageFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+
 
 @RestController
 @RequestMapping(value = "/api/vehicles", produces = MediaType.APPLICATION_JSON_VALUE)

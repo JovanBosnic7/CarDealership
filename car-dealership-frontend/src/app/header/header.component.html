@@ -53,7 +53,8 @@
         <li><a *ngIf = "this.authService.getRole() !== 'admin'"class="nav-link scrollto" href="#contact">Kontakt</a></li>
         <li><a *ngIf = "this.authService.isLoggedIn" class="nav-link scrollto" href="/testDrives">Test vožnje</a></li>
         <li><a *ngIf = "this.authService.getRole() === 'admin'" class="nav-link scrollto" href="/addVehicle">Dodajte vozilo</a></li>
-        <li><a *ngIf = "this.authService.getRole() === 'admin'" class="nav-link scrollto" href="/changeCarDealership">Izmenite informacije o auto kući</a></li>
+        <li><a *ngIf = "this.authService.getRole() === 'admin'" class="nav-link scrollto" href="/changeCarDealership">Auto kuća</a></li>
+        <li><a *ngIf = "this.authService.getRole() === 'admin'" class="nav-link scrollto" href="/prices">Cenovnik</a></li>
         <li><a *ngIf = "!this.authService.isLoggedIn" class="nav-link scrollto" href="/login">Prijavite se</a></li>
         <li><a *ngIf = "this.authService.isLoggedIn" (click) ="onLogout()" class="nav-link scrollto" href="">Odjavite se</a></li>
       </ul>

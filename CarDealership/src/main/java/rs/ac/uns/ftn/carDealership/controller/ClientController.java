@@ -10,6 +10,7 @@ import rs.ac.uns.ftn.carDealership.model.carDealership.CarDealership;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateClient;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateTestDrive;
 import rs.ac.uns.ftn.carDealership.repository.CarDealershipRepository;
+import rs.ac.uns.ftn.carDealership.repository.PriceRepository;
 import rs.ac.uns.ftn.carDealership.service.ClientDtoFactory;
 import rs.ac.uns.ftn.carDealership.service.IClientService;
 
@@ -28,7 +29,8 @@ public class ClientController {
 
     @Autowired
     CarDealershipRepository carDealershipRepository;
-
+    @Autowired
+    PriceRepository priceRepository;
 
     @PostMapping("/create")
     public ResponseEntity<?> createClient(@RequestBody CreateClient dto) {
@@ -70,6 +72,11 @@ public class ClientController {
     public ResponseEntity<?> CloseTestDrive(@RequestBody String testDriveId)  {
         this.clientService.closeTestDrive(testDriveId);
         return new ResponseEntity<>("Test drive successfully closed", HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllPrices")
+    public ResponseEntity<?> getAllPrices() {
+        return new ResponseEntity<>(priceRepository.findAll(), HttpStatus.OK);
     }
 
 }

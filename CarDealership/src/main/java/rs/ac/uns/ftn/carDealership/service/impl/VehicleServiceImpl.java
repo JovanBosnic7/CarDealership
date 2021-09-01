@@ -34,6 +34,8 @@ public class VehicleServiceImpl implements IVehicleService {
     VehicleDtoFactory vehicleDtoFactory;
     @Autowired
     ImageRepository imageRepository;
+    @Autowired
+    PriceRepository priceRepository;
 
     public List<Mark> getAllMarks() {
         return marksRepository.findAll();
@@ -46,10 +48,17 @@ public class VehicleServiceImpl implements IVehicleService {
     @Override
     public Vehicle createVehicle(CreateVehicle dto) {
         Vehicle vehicle = vehicleDtoFactory.buildVehicle(dto);
-        this.vehicleRepository.save(vehicle);
+        Vehicle v = vehicleRepository.save(vehicle);
+        savePrice(v);
         return vehicle;
     }
-
+    private void savePrice(Vehicle vehicle) {
+        Price price = new Price();
+        price.setPrice(vehicle.getPrice());
+        price.setDateOfSetting(new Date());
+        price.setVehicle(vehicle);
+        priceRepository.save(price);
+    }
     @Override
     public Vehicle getVehicleById(String vehicleId) {
         Vehicle vehicle = vehicleRepository.findById(UUID.fromString(vehicleId)).get();
@@ -87,7 +96,12 @@ public class VehicleServiceImpl implements IVehicleService {
         Vehicle vehicle = vehicleRepository.findById(UUID.fromString(createAction.getVehicleId())).get();
         vehicle.setPrice(calculatePrice(vehicle.getPrice(), createAction.getActionPrecentage()));
         vehicle.setHasAction(true);
-        vehicleRepository.save(vehicle);
+        Price price = new Price();
+        price.setPrice(vehicle.getPrice());
+        price.setVehicle(vehicle);
+        price.setDateOfSetting(new Date());
+        this.vehicleRepository.save(vehicle);
+        priceRepository.save(price);
     }
 
     private int calculatePrice(int vehiclePrice, String actionPrecentage) {

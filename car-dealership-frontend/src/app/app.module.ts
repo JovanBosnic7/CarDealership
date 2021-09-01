@@ -18,6 +18,7 @@ import { SingleVehicleComponent } from './single-vehicle/single-vehicle.componen
 import { ChangeCarDealershipComponent } from './change-car-dealership/change-car-dealership.component';
 import { TestDriveComponent } from './test-drive/test-drive.component';
 import { TestDrive } from './model/TestDrive';
+import { PricesComponent } from './prices/prices.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
   { path: 'addVehicle', component: AddVehicleComponent },
   { path: 'single-vehicle/:vehicleId', component: SingleVehicleComponent },
   { path: 'changeCarDealership', component: ChangeCarDealershipComponent },
+  { path: 'prices', component: PricesComponent },
   { path: 'testDrives', component: TestDriveComponent },
   { path: '**', redirectTo: '/404' },
 ];
@@ -43,6 +45,7 @@ const appRoutes: Routes = [
     SingleVehicleComponent,
     ChangeCarDealershipComponent,
     TestDriveComponent,
+    PricesComponent,
   ],
   imports: [
     BrowserModule,
