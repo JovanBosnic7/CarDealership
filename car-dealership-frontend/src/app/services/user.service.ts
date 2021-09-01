@@ -24,6 +24,22 @@ export class UserService {
       .get('http://localhost:8080/api/clients/getAllTestDrives/' + clientId)
       .pipe(
         map((responseData: any) => {
+          for (let i = 0; i < responseData.length; i++) {
+            responseData[i].date = responseData[i].date.slice(0, 10);
+          }
+          return responseData;
+        })
+      );
+  };
+
+  getTestDrives = () => {
+    return this.http
+      .get('http://localhost:8080/api/clients/getAllTestDrives')
+      .pipe(
+        map((responseData: any) => {
+          for (let i = 0; i < responseData.length; i++) {
+            responseData[i].date = responseData[i].date.slice(0, 10);
+          }
           return responseData;
         })
       );
@@ -31,6 +47,25 @@ export class UserService {
   createTestDrive = (dto: TestDrive) => {
     return this.http
       .post('http://localhost:8080/api/clients/createTestDrive', dto)
+      .pipe(
+        map((responseData: any) => {
+          return responseData;
+        })
+      );
+  };
+  cancelTestDrive = (id: string) => {
+    return this.http
+      .post('http://localhost:8080/api/clients/cancelTestDrive', id)
+      .pipe(
+        map((responseData: any) => {
+          return responseData;
+        })
+      );
+  };
+
+  closeTestDrive = (id: string) => {
+    return this.http
+      .post('http://localhost:8080/api/clients/closeTestDrive', id)
       .pipe(
         map((responseData: any) => {
           return responseData;

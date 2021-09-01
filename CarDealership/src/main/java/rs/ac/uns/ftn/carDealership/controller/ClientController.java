@@ -29,6 +29,7 @@ public class ClientController {
     @Autowired
     CarDealershipRepository carDealershipRepository;
 
+
     @PostMapping("/create")
     public ResponseEntity<?> createClient(@RequestBody CreateClient dto) {
         dto.setPassword(passwordEncoder.encode(dto.getPassword()));
@@ -52,10 +53,23 @@ public class ClientController {
         return new ResponseEntity<>("Test drive successfully created", HttpStatus.OK);
     }
     @GetMapping("/getAllTestDrives/{clientId}")
-    public ResponseEntity<?> getAllTestDrives(@PathVariable String clientId) {
-        System.out.println("**************************** controler *****************");
-        System.out.println(clientId);
+    public ResponseEntity<?> getAllTestDrivesByFlient(@PathVariable String clientId) {
         return new ResponseEntity<>(clientService.getAllTestDrives(clientId), HttpStatus.OK);
+    }
+
+    @PostMapping("/cancelTestDrive")
+    public ResponseEntity<?> cancelTestDrive(@RequestBody String testDriveId)  {
+        this.clientService.cancelTestDrive(testDriveId);
+        return new ResponseEntity<>("Test drive successfully canceled", HttpStatus.OK);
+    }
+    @GetMapping("/getAllTestDrives")
+    public ResponseEntity<?> getAllTestDrives() {
+        return new ResponseEntity<>(clientService.getTestDrives(), HttpStatus.OK);
+    }
+    @PostMapping("/closeTestDrive")
+    public ResponseEntity<?> CloseTestDrive(@RequestBody String testDriveId)  {
+        this.clientService.closeTestDrive(testDriveId);
+        return new ResponseEntity<>("Test drive successfully closed", HttpStatus.OK);
     }
 
 }

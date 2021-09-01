@@ -9,8 +9,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class TestDriveDto {
     String mark;
+    String id;
     String model;
     String landMark;
     String date;
     String status;
+    String client;
 }

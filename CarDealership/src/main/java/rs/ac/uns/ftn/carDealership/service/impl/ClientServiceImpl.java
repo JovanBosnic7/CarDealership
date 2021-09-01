@@ -54,17 +54,42 @@ public class ClientServiceImpl implements IClientService {
     }
 
     @Override
+    public void cancelTestDrive(String testDriveId) {
+        TestDriveStatus tds = this.testDriveStatusRepository.findTestDriveStatusByTestDrive_TestDriveId(UUID.fromString(testDriveId));
+        tds.setStatus("Otkazana");
+        testDriveStatusRepository.save(tds);
+    }
+
+    @Override
     public ArrayList<TestDriveDto> getAllTestDrives(String clientId) {
-        System.out.println("********************** SERVIS **********************");
         ArrayList<TestDrive> testDrives = this.testDriveRepository.findTestDriveByClient(UUID.fromString(clientId));
+        return buildTestDriveDto(testDrives);
+    }
+
+    @Override
+    public ArrayList<TestDriveDto> getTestDrives() {
+        ArrayList<TestDrive> testDrives = (ArrayList<TestDrive>) this.testDriveRepository.findAll();
+        return buildTestDriveDto(testDrives);
+    }
+
+    @Override
+    public void closeTestDrive(String testDriveId) {
+        TestDriveStatus tds = this.testDriveStatusRepository.findTestDriveStatusByTestDrive_TestDriveId(UUID.fromString(testDriveId));
+        tds.setStatus("Završena");
+        testDriveStatusRepository.save(tds);
+    }
+
+    private ArrayList<TestDriveDto> buildTestDriveDto(ArrayList<TestDrive> testDrives) {
         ArrayList<TestDriveDto> dtos = new ArrayList<>();
         for (TestDrive td : testDrives) {
             TestDriveDto dto = new TestDriveDto();
             dto.setDate(td.getDateOfTestDrive().toString());
+            dto.setId(td.getTestDriveId().toString());
             dto.setMark(td.getVehicle().getModel().getMark().getName());
             dto.setModel(td.getVehicle().getModel().getName());
             dto.setLandMark(td.getVehicle().getEngine().getEngineSpecification().getEngineModel());
             dto.setStatus(this.testDriveStatusRepository.findTestDriveStatusByTestDrive_TestDriveId(td.getTestDriveId()).getStatus());
+            dto.setClient(td.getClient().getName() + " " + td.getClient().getLastName());
             dtos.add(dto);
         }
         return dtos;

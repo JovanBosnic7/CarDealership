@@ -19,10 +19,26 @@ export class TestDriveComponent implements OnInit {
   }
 
   initData = () => {
-    this.userService
-      .getAllTestDrives(this.authService.getId() as string)
-      .subscribe((res) => {
+    if (this.authService.getRole() === 'client') {
+      this.userService
+        .getAllTestDrives(this.authService.getId() as string)
+        .subscribe((res) => {
+          this.testDrives = res as any[];
+        });
+    } else {
+      this.userService.getTestDrives().subscribe((res) => {
         this.testDrives = res as any[];
       });
+    }
+  };
+  onCancel = (id: string) => {
+    this.userService.cancelTestDrive(id).subscribe((res) => {});
+    alert('Test vožnja uspešno otkazana!');
+    window.location.href = '/testDrives';
+  };
+  onClose = (id: string) => {
+    this.userService.closeTestDrive(id).subscribe((res) => {});
+    alert('Test vožnja uspešno zatvorena!');
+    window.location.href = '/testDrives';
   };
 }

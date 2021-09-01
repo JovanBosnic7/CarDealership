@@ -54,7 +54,7 @@ export class SingleVehicleComponent implements OnInit {
     testDrive.dateOfTestDrive = this.testDriveDate;
     this.userService.createTestDrive(testDrive).subscribe((res) => {});
     alert('Test vožnja uspešno zakazana!');
-    this.router.navigate(['/cars']);
+    this.router.navigate(['/testDrives']);
   };
   onChange = (event: any) => {
     this.actionPrecent = event.target.value;

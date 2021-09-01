@@ -12,6 +12,10 @@ public interface IClientService {
     Client save(Client client);
 
     void createTestDrive(CreateTestDrive dto) throws ParseException;
-
+    void cancelTestDrive(String testDriveId);
     ArrayList<TestDriveDto> getAllTestDrives(String clientId);
+
+    ArrayList<TestDriveDto> getTestDrives();
+
+    void closeTestDrive(String testDriveId);
 }
