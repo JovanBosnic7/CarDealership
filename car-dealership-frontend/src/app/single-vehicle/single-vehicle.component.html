@@ -66,6 +66,14 @@
         >
           Uklonite vozilo iz ponude
         </button>
+        <button
+        *ngIf="this.authService.getRole() === 'client'"
+        class="btn btn-danger wrn-btn"
+        style="width: 100%; margin-top: 30px;"
+        (click)="onReservationClick()"
+      >
+        Rezervišite vozilo
+      </button>
       </div>
       <div class="col-md-8">
         <div class="card mb-3">

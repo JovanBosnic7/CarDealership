@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Client } from '../model/Client';
 import { map } from 'rxjs/operators';
 import { TestDrive } from '../model/TestDrive';
+import { CreateReservation } from '../model/CreateReservation';
 
 @Injectable({
   providedIn: 'root',
@@ -61,6 +62,16 @@ export class UserService {
   createTestDrive = (dto: TestDrive) => {
     return this.http
       .post('http://localhost:8080/api/clients/createTestDrive', dto)
+      .pipe(
+        map((responseData: any) => {
+          return responseData;
+        })
+      );
+  };
+
+  createReservation = (dto: CreateReservation) => {
+    return this.http
+      .post('http://localhost:8080/api/clients/createReservation', dto)
       .pipe(
         map((responseData: any) => {
           return responseData;

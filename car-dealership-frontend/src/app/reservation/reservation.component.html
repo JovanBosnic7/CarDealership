@@ -1,0 +1,56 @@
+<div class="registration-form" style="text-align: center">
+  <form>
+    <h1>Rezervacija vozila</h1>
+    <br />
+    <div class="form-group">
+      <h3>
+        {{ vehicle.model.mark.name }} {{ vehicle.model.name }}
+        {{ vehicle.engine.engineSpecification.engineModel }}
+      </h3>
+    </div>
+    <div class="form-group">
+      <h4>{{ vehicle.productionYear }} godište</h4>
+    </div>
+    <div class="form-group">
+      <h4>{{ vehicle.engine.engineSpecification.fuelType }}</h4>
+    </div>
+    <div class="form-group">
+      <h4>{{ vehicle.price }} €</h4>
+      <h4>{{ vehicle.carBody }}</h4>
+      <h4>{{ vehicle.mileage }} km</h4>
+    </div>
+    <input
+      style="margin-top: 30px"
+      type="date"
+      class="form-control search-slt"
+      (change)="onChange($event)"
+    />
+    <select
+      style="margin-top: 30px; margin-bottom: 30px"
+      (change)="setPayment($event)"
+      class="form-control custom-select bg-white border-md"
+    >
+      <option class="form-control">Izaberite način plaćanja</option>
+      <option class="form-control" value="Keš">Keš</option>
+      <option class="form-control" value="Kartica">Kartica</option>
+      <option class="form-control" value="Na odloženo">Na odloženo</option>
+    </select>
+    <h5>Ponudite cenu za vozilo (opciono)</h5>
+    <input
+      style="margin-top: 10px"
+      type="number"
+      class="form-control search-slt"
+      (change)="onPriceChange($event)"
+    />
+
+    <div class="form-group">
+      <button
+        type="button"
+        (click)="onClick()"
+        class="btn btn-danger create-account"
+      >
+        Izmeni podatke
+      </button>
+    </div>
+  </form>
+</div>

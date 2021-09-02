@@ -19,6 +19,7 @@ import { ChangeCarDealershipComponent } from './change-car-dealership/change-car
 import { TestDriveComponent } from './test-drive/test-drive.component';
 import { TestDrive } from './model/TestDrive';
 import { PricesComponent } from './prices/prices.component';
+import { ReservationComponent } from './reservation/reservation.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
   { path: 'changeCarDealership', component: ChangeCarDealershipComponent },
   { path: 'prices', component: PricesComponent },
   { path: 'testDrives', component: TestDriveComponent },
+  { path: 'reservation/:vehicleId', component: ReservationComponent },
   { path: '**', redirectTo: '/404' },
 ];
 
@@ -46,12 +48,13 @@ const appRoutes: Routes = [
     ChangeCarDealershipComponent,
     TestDriveComponent,
     PricesComponent,
+    ReservationComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes),
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
     NgbModule,
     IvyCarouselModule,
