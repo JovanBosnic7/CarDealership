@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.carDealership.model.carDealership.CarDealership;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateClient;
+import rs.ac.uns.ftn.carDealership.model.dto.CreateReservation;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateTestDrive;
 import rs.ac.uns.ftn.carDealership.repository.CarDealershipRepository;
 import rs.ac.uns.ftn.carDealership.repository.PriceRepository;
@@ -59,6 +60,15 @@ public class ClientController {
         return new ResponseEntity<>(clientService.getAllTestDrives(clientId), HttpStatus.OK);
     }
 
+    @GetMapping("/getReservations/{clientId}")
+    public ResponseEntity<?> getReservationsForClient(@PathVariable String clientId) {
+        return new ResponseEntity<>(clientService.getReservations(clientId), HttpStatus.OK);
+    }
+    @GetMapping("/getAllReservations")
+    public ResponseEntity<?> getAllReservations() {
+        return new ResponseEntity<>(clientService.getAllReservations(), HttpStatus.OK);
+    }
+
     @PostMapping("/cancelTestDrive")
     public ResponseEntity<?> cancelTestDrive(@RequestBody String testDriveId)  {
         this.clientService.cancelTestDrive(testDriveId);
@@ -77,6 +87,12 @@ public class ClientController {
     @GetMapping("/getAllPrices")
     public ResponseEntity<?> getAllPrices() {
         return new ResponseEntity<>(priceRepository.findAll(), HttpStatus.OK);
+    }
+
+    @PostMapping("/createReservation")
+    public ResponseEntity<?> createReservation(@RequestBody CreateReservation dto) throws ParseException {
+        this.clientService.createReservation(dto);
+        return new ResponseEntity<>("Reservation successfully created", HttpStatus.OK);
     }
 
 }

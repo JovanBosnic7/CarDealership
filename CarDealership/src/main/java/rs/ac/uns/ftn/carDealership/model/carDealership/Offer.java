@@ -33,4 +33,8 @@ public class Offer {
     @JoinColumn(name = "reservation_id", referencedColumnName = "reservation_id")
     private Reservation reservation;
 
+    @ManyToOne
+    @JoinColumn(name = "offer_status_id", referencedColumnName = "offer_status_id")
+    private OfferStatus offerStatus;
+
 }

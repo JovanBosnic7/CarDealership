@@ -46,6 +46,32 @@ export class UserService {
       );
   };
 
+  getReservations = (clientId: string) => {
+    return this.http
+      .get('http://localhost:8080/api/clients/getReservations/' + clientId)
+      .pipe(
+        map((responseData: any) => {
+          for (let i = 0; i < responseData.length; i++) {
+            responseData[i].date = responseData[i].date.slice(0, 10);
+          }
+          return responseData;
+        })
+      );
+  };
+
+  getAllReservations = () => {
+    return this.http
+      .get('http://localhost:8080/api/clients/getAllReservations')
+      .pipe(
+        map((responseData: any) => {
+          for (let i = 0; i < responseData.length; i++) {
+            responseData[i].date = responseData[i].date.slice(0, 10);
+          }
+          return responseData;
+        })
+      );
+  };
+
   getPrices = () => {
     return this.http.get('http://localhost:8080/api/clients/getAllPrices').pipe(
       map((responseData: any) => {
@@ -89,6 +115,46 @@ export class UserService {
   };
 
   closeTestDrive = (id: string) => {
+    return this.http
+      .post('http://localhost:8080/api/clients/closeTestDrive', id)
+      .pipe(
+        map((responseData: any) => {
+          return responseData;
+        })
+      );
+  };
+
+  cancelReservation = (id: string) => {
+    return this.http
+      .post('http://localhost:8080/api/clients/cancelTestDrive', id)
+      .pipe(
+        map((responseData: any) => {
+          return responseData;
+        })
+      );
+  };
+
+  closeReservation = (id: string) => {
+    return this.http
+      .post('http://localhost:8080/api/clients/closeTestDrive', id)
+      .pipe(
+        map((responseData: any) => {
+          return responseData;
+        })
+      );
+  };
+
+  acceptOffer = (id: string) => {
+    return this.http
+      .post('http://localhost:8080/api/clients/cancelTestDrive', id)
+      .pipe(
+        map((responseData: any) => {
+          return responseData;
+        })
+      );
+  };
+
+  declineOffer = (id: string) => {
     return this.http
       .post('http://localhost:8080/api/clients/closeTestDrive', id)
       .pipe(

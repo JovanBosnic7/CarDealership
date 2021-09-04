@@ -27,7 +27,4 @@ public class ReservationStatus {
     @Column(name = "status")
     private String status;
 
-    @ManyToOne
-    @JoinColumn(name = "reservation_id", referencedColumnName = "reservation_id")
-    private Reservation reservation;
 }

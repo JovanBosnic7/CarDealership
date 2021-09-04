@@ -27,7 +27,4 @@ public class OfferStatus {
     @Column(name = "status")
     private String status;
 
-    @ManyToOne
-    @JoinColumn(name = "offer_id", referencedColumnName = "offer_id")
-    private Offer offer;
 }

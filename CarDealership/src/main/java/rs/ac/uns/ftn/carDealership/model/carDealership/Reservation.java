@@ -36,4 +36,8 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "vehicle_id", referencedColumnName = "vehicle_id")
     private Vehicle vehicle;
+
+    @ManyToOne
+    @JoinColumn(name = "reservation_status_id", referencedColumnName = "reservation_status_id")
+    private ReservationStatus reservationStatus;
 }
