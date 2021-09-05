@@ -126,7 +126,7 @@ export class UserService {
 
   cancelReservation = (id: string) => {
     return this.http
-      .post('http://localhost:8080/api/clients/cancelTestDrive', id)
+      .post('http://localhost:8080/api/clients/cancelReservation', id)
       .pipe(
         map((responseData: any) => {
           return responseData;
@@ -136,7 +136,7 @@ export class UserService {
 
   closeReservation = (id: string) => {
     return this.http
-      .post('http://localhost:8080/api/clients/closeTestDrive', id)
+      .post('http://localhost:8080/api/clients/closeReservation', id)
       .pipe(
         map((responseData: any) => {
           return responseData;
@@ -146,7 +146,7 @@ export class UserService {
 
   acceptOffer = (id: string) => {
     return this.http
-      .post('http://localhost:8080/api/clients/cancelTestDrive', id)
+      .post('http://localhost:8080/api/clients/acceptOffer', id)
       .pipe(
         map((responseData: any) => {
           return responseData;
@@ -156,7 +156,7 @@ export class UserService {
 
   declineOffer = (id: string) => {
     return this.http
-      .post('http://localhost:8080/api/clients/closeTestDrive', id)
+      .post('http://localhost:8080/api/clients/declineOffer', id)
       .pipe(
         map((responseData: any) => {
           return responseData;

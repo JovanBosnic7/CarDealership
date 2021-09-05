@@ -55,6 +55,7 @@ public class ClientController {
         this.clientService.createTestDrive(dto);
         return new ResponseEntity<>("Test drive successfully created", HttpStatus.OK);
     }
+
     @GetMapping("/getAllTestDrives/{clientId}")
     public ResponseEntity<?> getAllTestDrivesByFlient(@PathVariable String clientId) {
         return new ResponseEntity<>(clientService.getAllTestDrives(clientId), HttpStatus.OK);
@@ -64,22 +65,49 @@ public class ClientController {
     public ResponseEntity<?> getReservationsForClient(@PathVariable String clientId) {
         return new ResponseEntity<>(clientService.getReservations(clientId), HttpStatus.OK);
     }
+
     @GetMapping("/getAllReservations")
     public ResponseEntity<?> getAllReservations() {
         return new ResponseEntity<>(clientService.getAllReservations(), HttpStatus.OK);
     }
 
     @PostMapping("/cancelTestDrive")
-    public ResponseEntity<?> cancelTestDrive(@RequestBody String testDriveId)  {
+    public ResponseEntity<?> cancelTestDrive(@RequestBody String testDriveId) {
         this.clientService.cancelTestDrive(testDriveId);
         return new ResponseEntity<>("Test drive successfully canceled", HttpStatus.OK);
     }
+
+    @PostMapping("/cancelReservation")
+    public ResponseEntity<?> cancelReservation(@RequestBody String reservationId) {
+        this.clientService.cancelReservation(reservationId);
+        return new ResponseEntity<>("Reservation successfully canceled", HttpStatus.OK);
+    }
+
+    @PostMapping("/closeReservation")
+    public ResponseEntity<?> closeReservation(@RequestBody String reservationId) {
+        this.clientService.closeReservation(reservationId);
+        return new ResponseEntity<>("Reservation successfully closed", HttpStatus.OK);
+    }
+
+    @PostMapping("/acceptOffer")
+    public ResponseEntity<?> acceptOffer(@RequestBody String reservationId) {
+        this.clientService.acceptOffer(reservationId);
+        return new ResponseEntity<>("Offer successfully accepted", HttpStatus.OK);
+    }
+
+    @PostMapping("/declineOffer")
+    public ResponseEntity<?> declineOffer(@RequestBody String reservationId) {
+        this.clientService.declineOffer(reservationId);
+        return new ResponseEntity<>("Offer successfully declined", HttpStatus.OK);
+    }
+
     @GetMapping("/getAllTestDrives")
     public ResponseEntity<?> getAllTestDrives() {
         return new ResponseEntity<>(clientService.getTestDrives(), HttpStatus.OK);
     }
+
     @PostMapping("/closeTestDrive")
-    public ResponseEntity<?> CloseTestDrive(@RequestBody String testDriveId)  {
+    public ResponseEntity<?> CloseTestDrive(@RequestBody String testDriveId) {
         this.clientService.closeTestDrive(testDriveId);
         return new ResponseEntity<>("Test drive successfully closed", HttpStatus.OK);
     }

@@ -113,6 +113,59 @@ public class ClientServiceImpl implements IClientService {
         return buildReservationDtos((ArrayList<Reservation>) reservationRepository.findAll());
     }
 
+    @Override
+    public void cancelReservation(String reservationId) {
+        Reservation reservation = getReservation(reservationId);
+        ReservationStatus res = createReservationStatus("Otkazana");
+        reservation.setReservationStatus(res);
+        createOffer(reservation.getReservationId(), "Otkazana");
+        reservationRepository.save(reservation);
+    }
+
+    @Override
+    public void closeReservation(String reservationId) {
+        Reservation reservation = getReservation(reservationId);
+        ReservationStatus res = createReservationStatus("Zatvorena");
+        reservation.setReservationStatus(res);
+        createOffer(reservation.getReservationId(), "Zatvorena");
+        reservationRepository.save(reservation);
+    }
+
+    @Override
+    public void acceptOffer(String reservationId) {
+        Reservation reservation = getReservation(reservationId);
+        createOffer(reservation.getReservationId(), "Prihvaćena");
+    }
+
+    @Override
+    public void declineOffer(String reservationId) {
+        Reservation reservation = getReservation(reservationId);
+        createOffer(reservation.getReservationId(), "Odbijena");
+    }
+
+    private void createOffer(UUID reservationId, String offerStatus) {
+        Offer offer = offerRepository.findByReservation_ReservationId(reservationId);
+        if (offer != null) {
+            OfferStatus ofs = new OfferStatus();
+            ofs.setDateOfCreation(new Date());
+            ofs.setStatus(offerStatus);
+            offerStatusRepository.save(ofs);
+            offer.setOfferStatus(ofs);
+            offerRepository.save(offer);
+        }
+    }
+
+    private ReservationStatus createReservationStatus(String status) {
+        ReservationStatus reservationStatus = new ReservationStatus();
+        reservationStatus.setStatus(status);
+        reservationStatus.setDateOfCreation(new Date());
+        return reservationStatusRepository.save(reservationStatus);
+    }
+
+    private Reservation getReservation(String reservationId) {
+        return reservationRepository.getById(UUID.fromString(reservationId));
+    }
+
     private ArrayList<ReservationDto> buildReservationDtos(ArrayList<Reservation> reservations) {
         ArrayList<ReservationDto> dtos = new ArrayList<>();
         for (Reservation res : reservations) {

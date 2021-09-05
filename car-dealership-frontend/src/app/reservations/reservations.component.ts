@@ -45,7 +45,7 @@ export class ReservationsComponent implements OnInit {
   onAccept = (id: string) => {
     this.userService.acceptOffer(id).subscribe((res) => {});
     alert('Ponuda prihvaćena!');
-    window.location.href = '/resevations';
+    window.location.href = '/reservations';
   };
   onDecline = (id: string) => {
     this.userService.declineOffer(id).subscribe((res) => {});

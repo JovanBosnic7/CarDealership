@@ -41,6 +41,8 @@ export class ReservationComponent implements OnInit {
     this.reservation.payment = this.payment;
     this.reservation.offeredPrice = this.price;
     this.userService.createReservation(this.reservation).subscribe((res) => {});
+    alert('Rezervacija uspešno kerirana!');
+    window.location.href = '/reservations';
   };
   onChange = (event: any) => {
     this.reservationDate = event.target.value;

@@ -1,7 +1,5 @@
 package rs.ac.uns.ftn.carDealership.service;
 
-import rs.ac.uns.ftn.carDealership.model.carDealership.Reservation;
-import rs.ac.uns.ftn.carDealership.model.carDealership.TestDrive;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateReservation;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateTestDrive;
 import rs.ac.uns.ftn.carDealership.model.dto.ReservationDto;
@@ -15,7 +13,9 @@ public interface IClientService {
     Client save(Client client);
 
     void createTestDrive(CreateTestDrive dto) throws ParseException;
+
     void cancelTestDrive(String testDriveId);
+
     ArrayList<TestDriveDto> getAllTestDrives(String clientId);
 
     ArrayList<TestDriveDto> getTestDrives();
@@ -27,4 +27,12 @@ public interface IClientService {
     ArrayList<ReservationDto> getReservations(String clientId);
 
     ArrayList<ReservationDto> getAllReservations();
+
+    void cancelReservation(String reservationId);
+
+    void closeReservation(String reservationId);
+
+    void acceptOffer(String reservationId);
+
+    void declineOffer(String reservationId);
 }
