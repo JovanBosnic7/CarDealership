@@ -33,9 +33,49 @@
               <input
                 type="text"
                 class="form-control search-slt"
-                placeholder="Unesite najvišu cenu vozila"
+                placeholder="Unesite najnižu cenu vozila"
+                (change)="onMinPriceChange($event)"
+              />
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+              <input
+                type="text"
+                class="form-control search-slt"
+                placeholder="Unesite najnižu cenu vozila"
                 (change)="onPriceChange($event)"
               />
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+              <select
+                (change)="setCarBody($event)"
+                class="form-control custom-select bg-white border-md search-slt"
+              >
+                <option class="form control">Izaberite karoseriju</option>
+                <option class="form-control" value="Limuzina">Limuzina</option>
+                <option class="form-control" value="Karavan">Karavan</option>
+                <option class="form-control"value = "Hečbek">Hečbek</option>
+                <option class="form-control"value="Džip">Džip</option>
+              </select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+              <select
+                (change)="setFuel($event)"
+                class="form-control custom-select bg-white border-md search-slt"
+              >
+                <option class="form control">Izaberite gorivo</option>
+                <option class="form-control"value ="Dizel">Dizel</option>
+                <option class="form-control" value= "Benzin">Benzin</option>
+              </select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+              <select
+                (change)="setGearBox($event)"
+                class="form-control custom-select bg-white border-md search-slt"
+              >
+                <option class="form control">Izaberite menjač</option>
+                <option class="form-control"value="Automatski">Automatski</option>
+                <option class="form-control"value ="Manuelni">Manuelni</option>
+              </select>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
               <button
@@ -46,7 +86,11 @@
                 Pretražite
               </button>
             </div>
-            <a (click) = "onSortClick()" style="margin-top: 10px; color:#ff6464; cursor: pointer; text-decoration: underline;">Sortirajte po ceni od najniže</a>
+            <div style="display: flex; flex-direction: row;">
+              <a (click) = "onSortClick()" style="margin-top: 10px; color:#ff6464; cursor: pointer; text-decoration: underline;">Sortirajte po ceni od najniže</a>
+              <a (click) = "onSortClick2()" style=" margin-left:20px; margin-top: 10px; color:#ff6464; cursor: pointer; text-decoration: underline;">Sortirajte po ceni od najviše</a>
+            </div>
+
           </div>
         </div>
       </div>

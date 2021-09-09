@@ -14,7 +14,11 @@ export class CarsHomepageComponent implements OnInit {
   public models: Model[] = [];
   public mark: string = '';
   public model: string = '';
-  public price: string = '';
+  public maxPrice: string = '';
+  public minPrice: string = '';
+  public carBody: string = '';
+  public fuel: string = '';
+  public gearBox: string = '';
   public isSearchClicked: boolean = false;
   constructor(public vehicleService: VehicleService) {}
 
@@ -41,10 +45,22 @@ export class CarsHomepageComponent implements OnInit {
     });
   };
   onPriceChange = (event: any) => {
-    this.price = event.target.value;
+    this.maxPrice = event.target.value;
+  };
+  onMinPriceChange = (event: any) => {
+    this.minPrice = event.target.value;
   };
   setSelectedModel = (event: any) => {
     this.model = event.target.value;
+  };
+  setCarBody = (event: any) => {
+    this.carBody = event.target.value;
+  };
+  setFuel = (event: any) => {
+    this.fuel = event.target.value;
+  };
+  setGearBox = (event: any) => {
+    this.gearBox = event.target.value;
   };
   onSearchClick = () => {
     this.isSearchClicked = true;
@@ -60,9 +76,29 @@ export class CarsHomepageComponent implements OnInit {
         (vehicle) => vehicle.model.mark.markId === this.mark
       );
     }
-    if (this.price !== '') {
+    if (this.maxPrice !== '') {
       this.vehicles = this.vehicles.filter(
-        (vehicle) => vehicle.price <= this.price
+        (vehicle) => vehicle.price <= this.maxPrice
+      );
+    }
+    if (this.minPrice !== '') {
+      this.vehicles = this.vehicles.filter(
+        (vehicle) => vehicle.price >= this.minPrice
+      );
+    }
+    if (this.carBody !== '') {
+      this.vehicles = this.vehicles.filter(
+        (vehicle) => vehicle.carBody === this.carBody
+      );
+    }
+    if (this.fuel !== '') {
+      this.vehicles = this.vehicles.filter(
+        (vehicle) => vehicle.engine.engineSpecification.fuelType === this.fuel
+      );
+    }
+    if (this.gearBox !== '') {
+      this.vehicles = this.vehicles.filter(
+        (vehicle) => vehicle.gearBoxType === this.gearBox
       );
     }
   };
@@ -72,6 +108,11 @@ export class CarsHomepageComponent implements OnInit {
   onSortClick = () => {
     this.vehicles = this.vehicles.sort(
       (vehicle1, vehicle2) => vehicle1.price - vehicle2.price
+    );
+  };
+  onSortClick2 = () => {
+    this.vehicles = this.vehicles.sort(
+      (vehicle1, vehicle2) => vehicle2.price - vehicle1.price
     );
   };
 }
