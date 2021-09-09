@@ -116,6 +116,7 @@
       <div class="card rounded">
         <div class="card-image" style="margin-bottom: 20px">
           <span *ngIf="vehicle.hasAction" class="card-notify-badge" style="background-color: #ff6464;">Vozilo na akciji</span>
+          <span *ngIf="vehicle.hasAction" class="card-notify-badge" style=" margin-left: 120px; background-color: yellow;">Stara cena: {{vehicle.oldPrice}}</span>
           <span class="card-notify-year" style="background-color: #ff6464">{{
             vehicle.productionYear
           }}</span>

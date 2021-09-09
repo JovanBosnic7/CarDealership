@@ -94,6 +94,7 @@ public class VehicleServiceImpl implements IVehicleService {
     @Override
     public void createAction(CreateAction createAction) {
         Vehicle vehicle = vehicleRepository.findById(UUID.fromString(createAction.getVehicleId())).get();
+        vehicle.setOldPrice(vehicle.getPrice());
         vehicle.setPrice(calculatePrice(vehicle.getPrice(), createAction.getActionPrecentage()));
         vehicle.setHasAction(true);
         Price price = new Price();

@@ -45,6 +45,9 @@ public class Vehicle {
     @Column(name = "price")
     private int price;
 
+    @Column(name = "old_price")
+    private Integer oldPrice;
+
     @Column(name = "number_of_doors")
     private int numberOfDoors;
 
