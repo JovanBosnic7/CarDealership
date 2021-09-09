@@ -177,6 +177,7 @@ public class ClientServiceImpl implements IClientService {
             dto.setLandMark(res.getVehicle().getEngine().getEngineSpecification().getEngineModel());
             dto.setDate(res.getDateOfValidity().toString());
             dto.setStatus(res.getReservationStatus().getStatus());
+            dto.setVehicleId(res.getVehicle().getVehicleId().toString());
             Offer offer = offerRepository.findByReservation_ReservationId(res.getReservationId());
             if (offer != null) {
                 dto.setOfferedPrice(String.valueOf(offer.getOfferedPrice()));
@@ -221,6 +222,7 @@ public class ClientServiceImpl implements IClientService {
             dto.setLandMark(td.getVehicle().getEngine().getEngineSpecification().getEngineModel());
             dto.setStatus(this.testDriveStatusRepository.findTestDriveStatusByTestDrive_TestDriveId(td.getTestDriveId()).getStatus());
             dto.setClient(td.getClient().getName() + " " + td.getClient().getLastName());
+            dto.setVehicleId(td.getVehicle().getVehicleId().toString());
             dtos.add(dto);
         }
         return dtos;

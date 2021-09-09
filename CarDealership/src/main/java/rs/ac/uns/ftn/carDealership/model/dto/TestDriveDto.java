@@ -15,4 +15,5 @@ public class TestDriveDto {
     String date;
     String status;
     String client;
+    String vehicleId;
 }

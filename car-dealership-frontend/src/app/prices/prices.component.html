@@ -19,8 +19,9 @@
             class="hidden"
             *ngFor="let price of prices"
           >
-            <td data-name="name">
+            <td style="display: flex; flex-direction: row;" data-name="name">
               {{price.vehicle.model.mark.name}} {{price.vehicle.model.name}} {{price.vehicle.engine.engineSpecification.engineModel}}
+              <p style=" margin-left:20px; margin-top:3px; font-size: 12px;">Šifra vozila: {{price.vehicle.vehicleId}}</p>
             </td>
             <td data-name="mail">
                 {{price.price}} €

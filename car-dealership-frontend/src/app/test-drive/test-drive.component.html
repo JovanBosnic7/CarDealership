@@ -28,8 +28,10 @@
             class="hidden"
             *ngFor="let td of testDrives"
           >
-            <td data-name="name">
+            <td data-name="name" style="display: flex; flex-direction: row;">
               {{ td.mark }} {{ td.model }} {{ td.landMark }}
+              <p style=" margin-left:20px; margin-top:3px; font-size: 12px;">Šifra vozila: {{td.vehicleId}}</p>
+            
             </td>
             <td data-name="mail">
               {{ td.date }}

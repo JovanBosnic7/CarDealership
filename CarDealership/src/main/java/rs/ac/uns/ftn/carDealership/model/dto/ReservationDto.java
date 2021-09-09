@@ -17,4 +17,5 @@ public class ReservationDto {
     String client;
     String offeredPrice;
     String offerStatus;
+    String vehicleId;
 }

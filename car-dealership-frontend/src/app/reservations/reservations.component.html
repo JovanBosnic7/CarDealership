@@ -52,8 +52,9 @@
             class="hidden"
             *ngFor="let res of reservations"
           >
-            <td data-name="name">
+            <td data-name="name" style="display: flex; flex-direction: column;">
               {{ res.mark }} {{ res.model }} {{ res.landMark }}
+              <p style="font-size: 10px;">Šifra vozila: {{res.vehicleId}}</p>
             </td>
             <td data-name="mail">
               {{ res.date }}
