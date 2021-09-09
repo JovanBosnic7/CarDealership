@@ -26,8 +26,11 @@ export class CarsHomepageComponent implements OnInit {
     this.vehicleService.getAllMarks().subscribe((res) => {
       this.marks = res as Mark[];
     });
-    this.vehicleService.getAllVehicles().subscribe((response) => {
+    this.vehicleService.getAllVehicles().subscribe((response: any[]) => {
       this.vehicles = response as any[];
+      this.vehicles = this.vehicles.filter(
+        (vehicle) => vehicle.vehicle_status === 'Available'
+      );
     });
   };
   setModel = (event: any) => {
