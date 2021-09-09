@@ -26,12 +26,9 @@ public class WorkTime {
     private Date day;
 
     @Column(name = "startTime")
-    private Time startTime;
+    private String startTime;
 
     @Column(name = "endTime")
-    private Time endTime;
+    private String endTime;
 
-    @ManyToOne
-    @JoinColumn(name = "car_dealership_id", referencedColumnName = "car_dealership_id")
-    private CarDealership carDealership;
 }

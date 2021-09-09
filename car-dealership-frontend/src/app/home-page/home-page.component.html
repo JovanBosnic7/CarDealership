@@ -131,6 +131,11 @@
               </svg>
               <h3>Naša adresa</h3>
               <p>{{ carDealership.address }}</p>
+              <h3>Radno vreme</h3>
+              <p>
+                {{ carDealership.workTime.startTime }} -
+                {{ carDealership.workTime.endTime }}
+              </p>
             </div>
           </div>
 
@@ -192,7 +197,10 @@
                 <br />
                 {{ carDealership.address }}<br /><br />
                 <strong>Telefon:</strong> {{ carDealership.phoneNumber }}<br />
-                <strong>Imejl:</strong>{{ carDealership.email }}<br />
+                <strong>Imejl:</strong> {{ carDealership.email }}<br />
+                <strong>Radno vreme:</strong>
+                {{ carDealership.workTime.startTime }} -
+                {{ carDealership.workTime.endTime }}<br />
               </p>
               <div class="social-links mt-3">
                 <a href="#" class="twitter"
@@ -319,7 +327,10 @@
         >. All Rights Reserved
       </div>
       <div class="credits">
-        Designed by <a href="https://www.linkedin.com/in/jovan-bosnic-a69b6a202/">Jovan Bosnić</a>
+        Designed by
+        <a href="https://www.linkedin.com/in/jovan-bosnic-a69b6a202/"
+          >Jovan Bosnić</a
+        >
       </div>
     </div>
   </footer>

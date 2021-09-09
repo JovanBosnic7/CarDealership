@@ -42,6 +42,22 @@
         value="{{ carDealership.phoneNumber }}"
         (change) = "onChangeP($event)"
       />
+      <input
+      type="text"
+      class="form-control item"
+      id="phone-number"
+      placeholder="Početak radnog vremena"
+      value="{{ carDealership.workTime.startTime }}"
+      (change) = "onChangeT($event)"
+    />
+    <input
+      type="text"
+      class="form-control item"
+      id="phone-number"
+      placeholder="Kraj radnog vremena"
+      value="{{ carDealership.workTime.endTime }}"
+      (change) = "onChangeEt($event)"
+    />
     </div>
     <div class="form-group">
       <button type="button" (click) = "onClick()" class="btn btn-danger create-account">

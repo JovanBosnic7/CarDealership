@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.jdbc.Work;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -32,4 +33,7 @@ public class CarDealership {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @ManyToOne
+    @JoinColumn(name = "work_time_id", referencedColumnName = "work_time_id")
+    private WorkTime workTime;
 }

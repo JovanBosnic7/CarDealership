@@ -7,11 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.carDealership.model.carDealership.CarDealership;
+import rs.ac.uns.ftn.carDealership.model.carDealership.WorkTime;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateClient;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateReservation;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateTestDrive;
 import rs.ac.uns.ftn.carDealership.repository.CarDealershipRepository;
 import rs.ac.uns.ftn.carDealership.repository.PriceRepository;
+import rs.ac.uns.ftn.carDealership.repository.WorkTimeRepository;
 import rs.ac.uns.ftn.carDealership.service.ClientDtoFactory;
 import rs.ac.uns.ftn.carDealership.service.IClientService;
 
@@ -32,6 +34,8 @@ public class ClientController {
     CarDealershipRepository carDealershipRepository;
     @Autowired
     PriceRepository priceRepository;
+    @Autowired
+    WorkTimeRepository workTimeRepository;
 
     @PostMapping("/create")
     public ResponseEntity<?> createClient(@RequestBody CreateClient dto) {
@@ -46,6 +50,8 @@ public class ClientController {
 
     @PostMapping("/updateCarDealership")
     public ResponseEntity<?> updateCarDealership(@RequestBody CarDealership carDealership) {
+        WorkTime wt = this.workTimeRepository.save(carDealership.getWorkTime());
+        carDealership.setWorkTime(wt);
         this.carDealershipRepository.save(carDealership);
         return new ResponseEntity<>("Car dealership successfully updated", HttpStatus.OK);
     }

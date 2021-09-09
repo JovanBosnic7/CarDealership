@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientService } from '../client.service';
-import { CarDealership } from '../model/CarDealership';
+import { CarDealership, WorkTime } from '../model/CarDealership';
 
 @Component({
   selector: 'app-change-car-dealership',
@@ -13,6 +13,8 @@ export class ChangeCarDealershipComponent implements OnInit {
   public name: string = '';
   public address: string = '';
   public email: string = '';
+  public startTime: string = '';
+  public endTime: string = '';
   public phoneNumber: string = '';
   constructor(public clientService: ClientService, public router: Router) {}
 
@@ -37,6 +39,12 @@ export class ChangeCarDealershipComponent implements OnInit {
   onChangeP = (event: any) => {
     this.phoneNumber = event.target.value;
   };
+  onChangeT = (event: any) => {
+    this.startTime = event.target.value;
+  };
+  onChangeEt = (event: any) => {
+    this.endTime = event.target.value;
+  };
 
   onClick = () => {
     this.carDealership.name =
@@ -49,6 +57,17 @@ export class ChangeCarDealershipComponent implements OnInit {
       this.phoneNumber === ''
         ? this.carDealership.phoneNumber
         : this.phoneNumber;
+
+    let workTime = new WorkTime();
+    workTime.startTime =
+      this.startTime === ''
+        ? this.carDealership.workTime.startTime
+        : this.startTime;
+
+    workTime.endTime =
+      this.endTime === '' ? this.carDealership.workTime.endTime : this.endTime;
+    this.carDealership.workTime = workTime;
+
     this.clientService
       .updateCarDealership(this.carDealership)
       .subscribe((res) => {});
