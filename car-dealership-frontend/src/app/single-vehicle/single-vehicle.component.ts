@@ -59,6 +59,9 @@ export class SingleVehicleComponent implements OnInit {
   onChange = (event: any) => {
     this.actionPrecent = event.target.value;
   };
+  onChangeVehicle = () => {
+    this.router.navigate(['/changeCar/' + this.vehicleId]);
+  }
 
   onReservationClick = () => {
     this.router.navigate(['/reservation/' + this.vehicleId]);

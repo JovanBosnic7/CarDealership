@@ -21,6 +21,7 @@ import { TestDrive } from './model/TestDrive';
 import { PricesComponent } from './prices/prices.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { ReservationsComponent } from './reservations/reservations.component';
+import { ChangeCarComponent } from './change-car/change-car.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
   { path: 'testDrives', component: TestDriveComponent },
   { path: 'reservations', component: ReservationsComponent },
   { path: 'reservation/:vehicleId', component: ReservationComponent },
+  { path: 'changeCar/:vehicleId', component: ChangeCarComponent },
   { path: '**', redirectTo: '/404' },
 ];
 
@@ -52,6 +54,7 @@ const appRoutes: Routes = [
     PricesComponent,
     ReservationComponent,
     ReservationsComponent,
+    ChangeCarComponent,
   ],
   imports: [
     BrowserModule,
