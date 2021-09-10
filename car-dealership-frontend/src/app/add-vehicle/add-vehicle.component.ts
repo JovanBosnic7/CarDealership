@@ -128,5 +128,6 @@ export class AddVehicleComponent implements OnInit {
     this.startStop && this.addVehicle.accessories.push('Start-stop');
     this.reserveWheel && this.addVehicle.accessories.push('Rezervni točak');
     this.usb && this.addVehicle.accessories.push('USB');
+    this.parkingSensors && this.addVehicle.accessories.push("Parking senzori");
   };
 }

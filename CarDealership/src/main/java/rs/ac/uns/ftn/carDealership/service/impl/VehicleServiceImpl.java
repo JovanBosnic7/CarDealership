@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateAction;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateVehicle;
+import rs.ac.uns.ftn.carDealership.model.dto.UpdateVehicle;
 import rs.ac.uns.ftn.carDealership.model.vehicle.*;
 import rs.ac.uns.ftn.carDealership.repository.*;
 import rs.ac.uns.ftn.carDealership.service.IVehicleService;
@@ -45,6 +46,13 @@ public class VehicleServiceImpl implements IVehicleService {
         return modelRepository.getModelsByMark_MarkId(UUID.fromString(markId));
     }
 
+    @Override
+    public Vehicle updateVehicle(UpdateVehicle dto) {
+        Vehicle vehicle = vehicleDtoFactory.buildVehicleForUpdate(dto);
+        Vehicle v = vehicleRepository.saveAndFlush(vehicle);
+        savePrice(v);
+        return vehicle;
+    }
     @Override
     public Vehicle createVehicle(CreateVehicle dto) {
         Vehicle vehicle = vehicleDtoFactory.buildVehicle(dto);

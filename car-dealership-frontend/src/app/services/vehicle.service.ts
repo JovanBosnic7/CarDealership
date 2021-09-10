@@ -62,6 +62,16 @@ export class VehicleService {
         })
       );
   };
+
+  updateVehicle = (createVehicle: CreateVehicle) => {
+    return this.http
+      .post('http://localhost:8080/api/vehicles/update', createVehicle)
+      .pipe(
+        map((responseData: any) => {
+          return responseData;
+        })
+      );
+  };
   uploadImages = (images: FormData) => {
     return this.http
       .post('http://localhost:8080/api/vehicles/uploadImages', images)

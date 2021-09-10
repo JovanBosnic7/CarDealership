@@ -9,6 +9,9 @@ import java.util.UUID;
 
 public interface ModelRepository extends JpaRepository<Model, UUID> {
     List<Model> getModelsByMark_MarkId(UUID markId);
+
     @Query("select model from Model model where model.modelId = ?1")
     Model getModelById(UUID modelId);
+
+    Model getModelByName(String name);
 }

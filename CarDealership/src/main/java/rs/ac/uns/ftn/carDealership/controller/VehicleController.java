@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateAction;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateVehicle;
+import rs.ac.uns.ftn.carDealership.model.dto.UpdateVehicle;
 import rs.ac.uns.ftn.carDealership.repository.ImageRepository;
 import rs.ac.uns.ftn.carDealership.service.IVehicleService;
 import rs.ac.uns.ftn.carDealership.service.ImageFactory;
@@ -39,6 +40,11 @@ public class VehicleController {
     @PostMapping("/create")
     public ResponseEntity<?> createVehicle(@RequestBody CreateVehicle createVehicle) {
         return new ResponseEntity<>(vehicleService.createVehicle(createVehicle), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<?> updateVehicle(@RequestBody UpdateVehicle createVehicle) {
+        return new ResponseEntity<>(vehicleService.updateVehicle(createVehicle), HttpStatus.OK);
     }
 
     @PostMapping("/uploadImages")

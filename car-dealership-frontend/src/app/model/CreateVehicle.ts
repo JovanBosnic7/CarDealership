@@ -1,5 +1,6 @@
 export class CreateVehicle {
   mark: string;
+  vehicleId: string;
   model: string;
   carBody: string;
   year: string;
@@ -21,9 +22,11 @@ export class CreateVehicle {
   engineNumber: string;
   chassisNumber: string;
   images: string[];
+  existingImages: any[];
 
   constructor() {
     this.mark = '';
+    this.vehicleId = '';
     this.model = '';
     this.carBody = '';
     this.year = '';
@@ -45,5 +48,6 @@ export class CreateVehicle {
     this.engineNumber = '';
     this.chassisNumber = '';
     this.images = [];
+    this.existingImages = [];
   }
 }
