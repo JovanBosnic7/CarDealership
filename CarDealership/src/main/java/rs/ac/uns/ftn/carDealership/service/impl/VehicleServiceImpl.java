@@ -50,7 +50,6 @@ public class VehicleServiceImpl implements IVehicleService {
     public Vehicle updateVehicle(UpdateVehicle dto) {
         Vehicle vehicle = vehicleDtoFactory.buildVehicleForUpdate(dto);
         Vehicle v = vehicleRepository.saveAndFlush(vehicle);
-        savePrice(v);
         return vehicle;
     }
     @Override

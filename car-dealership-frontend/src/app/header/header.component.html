@@ -57,7 +57,7 @@
         <li><a *ngIf = "this.authService.getRole() === 'admin'" class="nav-link scrollto" href="/changeCarDealership">Auto kuća</a></li>
         <li><a *ngIf = "this.authService.getRole() === 'admin'" class="nav-link scrollto" href="/prices">Cenovnik</a></li>
         <li><a *ngIf = "this.authService.getRole() === 'admin'" class="nav-link scrollto" href="/promotion">Promocije</a></li>
-        <li><a  class="nav-link scrollto" href="/login">Prijavite se</a></li>
+        <li><a  *ngIf="!this.authService.isLoggedIn" class="nav-link scrollto" href="/login">Prijavite se</a></li>
         <li><a *ngIf = "this.authService.isLoggedIn" (click) ="onLogout()" class="nav-link scrollto" href="">Odjavite se</a></li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
