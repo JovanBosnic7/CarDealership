@@ -20,6 +20,7 @@ export class CarsHomepageComponent implements OnInit {
   public fuel: string = '';
   public gearBox: string = '';
   public isSearchClicked: boolean = false;
+  public promotions: any[] = [];
   constructor(public vehicleService: VehicleService) {}
 
   ngOnInit(): void {
@@ -29,6 +30,9 @@ export class CarsHomepageComponent implements OnInit {
   initData = () => {
     this.vehicleService.getAllMarks().subscribe((res) => {
       this.marks = res as Mark[];
+    });
+    this.vehicleService.getAllPromotions().subscribe((res) => {
+      this.promotions = res as any[];
     });
     this.vehicleService.getAllVehicles().subscribe((response: any[]) => {
       this.vehicles = response as any[];

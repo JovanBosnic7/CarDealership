@@ -105,6 +105,24 @@
 >
   Poništite filtere
 </button>
+
+<!-- PROMOCIJE -->
+<div class="courses-container" style="display: flex; flex-direction: row;justify-content: center;">
+	<div style="width: 600px; height: 130px;" *ngFor="let promo of promotions" class="course">
+		<div style="background-color: #cc1616; text-align: center;" class="course-preview">
+			<h5>{{promo.name}}</h5>
+    </div>
+		<div style="background-color: whitesmoke; text-align: center;" class="course-info">
+			<h6>{{promo.description}}</h6>
+			<button class="btn">Važi od {{promo.startDate}} do {{promo.endDate}}</button>
+		</div>
+	</div>
+</div>
+
+
+
+
+
 <div class="container">
   <div class="row" id="ads">
     <!-- Category Card -->

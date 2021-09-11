@@ -23,6 +23,24 @@ export class VehicleService {
     );
   };
 
+  getAllPromotions = () => {
+    return this.http
+      .get('http://localhost:8080/api/clients/getAllPromotions')
+      .pipe(
+        map((responseData: any) => {
+          for (let i = 0; i < responseData.length; i++) {
+            responseData[i].startDate = new Date(
+              responseData[i].startDate
+            ).toLocaleDateString();
+            responseData[i].endDate = new Date(
+              responseData[i].endDate
+            ).toLocaleDateString();
+          }
+          return responseData;
+        })
+      );
+  };
+
   getVehicleById = (vehicleId: string) => {
     return this.http
       .get('http://localhost:8080/api/vehicles/getById/' + vehicleId)
@@ -58,6 +76,16 @@ export class VehicleService {
         return responseData;
       })
     );
+  };
+
+  deletePromotion = (promotionId: string) => {
+    return this.http
+      .get('http://localhost:8080/api/clients/deletePromotion/' + promotionId)
+      .pipe(
+        map((responseData: any) => {
+          return responseData;
+        })
+      );
   };
   getAllModelsByMark = (markId: string) => {
     return this.http

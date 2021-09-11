@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { TestDrive } from '../model/TestDrive';
 import { CreateReservation } from '../model/CreateReservation';
 import { CreateFeedback } from '../model/CreateFeedback';
+import { Promotion } from '../model/Promotion';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,16 @@ export class UserService {
   registerUser = (client: Client) => {
     return this.http
       .post('http://localhost:8080/api/clients/create', client)
+      .pipe(
+        map((responseData: any) => {
+          return responseData;
+        })
+      );
+  };
+
+  createPromotion = (promotion: Promotion) => {
+    return this.http
+      .post('http://localhost:8080/api/clients/createPromotion', promotion)
       .pipe(
         map((responseData: any) => {
           return responseData;

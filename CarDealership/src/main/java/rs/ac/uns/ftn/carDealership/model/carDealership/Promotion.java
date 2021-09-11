@@ -25,18 +25,16 @@ public class Promotion {
     private UUID promotionId;
 
     @Column(name = "startDate")
-    private Date startDate;
+    private String startDate;
 
     @Column(name = "endDate")
-    private Date endDate;
+    private String endDate;
 
     @Column(name = "name")
     private String name;
 
     @Column(name = "description")
-    private String descritpion;
+    private String description;
 
-    @ManyToMany
-    private Set<Vehicle> vehicles = new HashSet<>();
 
 }

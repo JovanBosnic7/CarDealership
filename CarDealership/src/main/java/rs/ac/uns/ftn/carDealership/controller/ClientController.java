@@ -7,15 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.carDealership.model.carDealership.CarDealership;
+import rs.ac.uns.ftn.carDealership.model.carDealership.Promotion;
 import rs.ac.uns.ftn.carDealership.model.carDealership.WorkTime;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateClient;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateFeedback;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateReservation;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateTestDrive;
-import rs.ac.uns.ftn.carDealership.repository.CarDealershipRepository;
-import rs.ac.uns.ftn.carDealership.repository.FeedbackRepository;
-import rs.ac.uns.ftn.carDealership.repository.PriceRepository;
-import rs.ac.uns.ftn.carDealership.repository.WorkTimeRepository;
+import rs.ac.uns.ftn.carDealership.repository.*;
 import rs.ac.uns.ftn.carDealership.service.ClientDtoFactory;
 import rs.ac.uns.ftn.carDealership.service.IClientService;
 
@@ -32,7 +30,8 @@ public class ClientController {
 
     @Autowired
     ClientDtoFactory clientDtoFactory;
-
+    @Autowired
+    PromotionRepository promotionRepository;
     @Autowired
     CarDealershipRepository carDealershipRepository;
     @Autowired
@@ -81,6 +80,13 @@ public class ClientController {
     public ResponseEntity<?> getFeedbacksForVehicle(@PathVariable String vehicleId) {
 
         return new ResponseEntity<>(feedbackRepository.findAllByVehicle_VehicleId(UUID.fromString(vehicleId)), HttpStatus.OK);
+    }
+
+    @GetMapping("/deletePromotion/{promotionId}")
+    public ResponseEntity<?> deletePromotion(@PathVariable String promotionId) {
+        Promotion promotion = promotionRepository.getById(UUID.fromString(promotionId));
+        promotionRepository.delete(promotion);
+        return new ResponseEntity<>("Promotion deleted", HttpStatus.OK);
     }
 
     @GetMapping("/getAllReservations")
@@ -138,6 +144,19 @@ public class ClientController {
     public ResponseEntity<?> createReservation(@RequestBody CreateReservation dto) throws ParseException {
         this.clientService.createReservation(dto);
         return new ResponseEntity<>("Reservation successfully created", HttpStatus.OK);
+    }
+
+    @PostMapping("/createPromotion")
+    public ResponseEntity<?> createPromotion(@RequestBody Promotion promotion) {
+        System.out.println(promotion.getName());
+        System.out.println(promotion.getDescription());
+        promotionRepository.save(promotion);
+        return new ResponseEntity<>("Promotion successfully created", HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllPromotions")
+    public ResponseEntity<?> getAllPromotions() {
+        return new ResponseEntity<>(promotionRepository.findAll(), HttpStatus.OK);
     }
 
     @PostMapping("/createFeedback")
