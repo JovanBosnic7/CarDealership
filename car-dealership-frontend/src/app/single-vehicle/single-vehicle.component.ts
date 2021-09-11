@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CreateAction } from '../model/CreateAction';
+import { CreateFeedback } from '../model/CreateFeedback';
 import { TestDrive } from '../model/TestDrive';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
@@ -18,6 +19,9 @@ export class SingleVehicleComponent implements OnInit {
   public isActionClicked: boolean = false;
   public isTestDriveClicked: boolean = false;
   public testDriveDate: string = '';
+  public createFeedback: CreateFeedback = new CreateFeedback();
+  public description: string = '';
+  public feedbacks : any[] = [];
   constructor(
     public route: ActivatedRoute,
     public vehicleService: VehicleService,
@@ -34,6 +38,9 @@ export class SingleVehicleComponent implements OnInit {
     this.vehicleService.getVehicleById(this.vehicleId).subscribe((res) => {
       this.vehicle = res as any;
     });
+    this.vehicleService.getVehicleFeedbacks(this.vehicleId).subscribe((feeds)=>{
+      this.feedbacks = feeds as any;
+    } )
   };
 
   onSellVehicleClick = () => {
@@ -61,8 +68,15 @@ export class SingleVehicleComponent implements OnInit {
   };
   onChangeVehicle = () => {
     this.router.navigate(['/changeCar/' + this.vehicleId]);
-  }
-
+  };
+  onAddFeedback = () => {
+    this.createFeedback.description = this.description;
+    this.createFeedback.clientId = this.authService.getId() as string;
+    this.createFeedback.vehicleId = this.vehicleId;
+    this.userService.createFeedback(this.createFeedback).subscribe((res) => {});
+    alert('Utisak uspešno ostavljen!');
+    this.router.navigate(['/cars']);
+  };
   onReservationClick = () => {
     this.router.navigate(['/reservation/' + this.vehicleId]);
   };

@@ -4,6 +4,7 @@ import { Client } from '../model/Client';
 import { map } from 'rxjs/operators';
 import { TestDrive } from '../model/TestDrive';
 import { CreateReservation } from '../model/CreateReservation';
+import { CreateFeedback } from '../model/CreateFeedback';
 
 @Injectable({
   providedIn: 'root',
@@ -98,6 +99,16 @@ export class UserService {
   createReservation = (dto: CreateReservation) => {
     return this.http
       .post('http://localhost:8080/api/clients/createReservation', dto)
+      .pipe(
+        map((responseData: any) => {
+          return responseData;
+        })
+      );
+  };
+
+  createFeedback = (dto: CreateFeedback) => {
+    return this.http
+      .post('http://localhost:8080/api/clients/createFeedback', dto)
       .pipe(
         map((responseData: any) => {
           return responseData;

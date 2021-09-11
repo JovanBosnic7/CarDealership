@@ -37,6 +37,21 @@ export class VehicleService {
       );
   };
 
+  getVehicleFeedbacks = (vehicleId: string) => {
+    return this.http
+      .get('http://localhost:8080/api/clients/getFeedbacks/' + vehicleId)
+      .pipe(
+        map((responseData: any) => {
+          for (let i = 0; i < responseData.length; i++) {
+            responseData[i].dateOfPosting = new Date(
+              responseData[i].dateOfPosting
+            ).toLocaleDateString();
+          }
+          return responseData;
+        })
+      );
+  };
+
   getAllMarks = () => {
     return this.http.get('http://localhost:8080/api/vehicles/getMarks').pipe(
       map((responseData: any) => {

@@ -9,15 +9,18 @@ import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.carDealership.model.carDealership.CarDealership;
 import rs.ac.uns.ftn.carDealership.model.carDealership.WorkTime;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateClient;
+import rs.ac.uns.ftn.carDealership.model.dto.CreateFeedback;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateReservation;
 import rs.ac.uns.ftn.carDealership.model.dto.CreateTestDrive;
 import rs.ac.uns.ftn.carDealership.repository.CarDealershipRepository;
+import rs.ac.uns.ftn.carDealership.repository.FeedbackRepository;
 import rs.ac.uns.ftn.carDealership.repository.PriceRepository;
 import rs.ac.uns.ftn.carDealership.repository.WorkTimeRepository;
 import rs.ac.uns.ftn.carDealership.service.ClientDtoFactory;
 import rs.ac.uns.ftn.carDealership.service.IClientService;
 
 import java.text.ParseException;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api/clients", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -36,6 +39,8 @@ public class ClientController {
     PriceRepository priceRepository;
     @Autowired
     WorkTimeRepository workTimeRepository;
+    @Autowired
+    FeedbackRepository feedbackRepository;
 
     @PostMapping("/create")
     public ResponseEntity<?> createClient(@RequestBody CreateClient dto) {
@@ -70,6 +75,12 @@ public class ClientController {
     @GetMapping("/getReservations/{clientId}")
     public ResponseEntity<?> getReservationsForClient(@PathVariable String clientId) {
         return new ResponseEntity<>(clientService.getReservations(clientId), HttpStatus.OK);
+    }
+
+    @GetMapping("/getFeedbacks/{vehicleId}")
+    public ResponseEntity<?> getFeedbacksForVehicle(@PathVariable String vehicleId) {
+
+        return new ResponseEntity<>(feedbackRepository.findAllByVehicle_VehicleId(UUID.fromString(vehicleId)), HttpStatus.OK);
     }
 
     @GetMapping("/getAllReservations")
@@ -128,5 +139,12 @@ public class ClientController {
         this.clientService.createReservation(dto);
         return new ResponseEntity<>("Reservation successfully created", HttpStatus.OK);
     }
+
+    @PostMapping("/createFeedback")
+    public ResponseEntity<?> createFeedback(@RequestBody CreateFeedback dto) throws ParseException {
+        this.clientService.createFeedback(dto);
+        return new ResponseEntity<>("Feedback successfully created", HttpStatus.OK);
+    }
+
 
 }

@@ -1,9 +1,6 @@
 package rs.ac.uns.ftn.carDealership.service;
 
-import rs.ac.uns.ftn.carDealership.model.dto.CreateReservation;
-import rs.ac.uns.ftn.carDealership.model.dto.CreateTestDrive;
-import rs.ac.uns.ftn.carDealership.model.dto.ReservationDto;
-import rs.ac.uns.ftn.carDealership.model.dto.TestDriveDto;
+import rs.ac.uns.ftn.carDealership.model.dto.*;
 import rs.ac.uns.ftn.carDealership.model.users.Client;
 
 import java.text.ParseException;
@@ -35,4 +32,6 @@ public interface IClientService {
     void acceptOffer(String reservationId);
 
     void declineOffer(String reservationId);
+
+    void createFeedback(CreateFeedback dto);
 }

@@ -2,86 +2,47 @@
   <div class="main-body">
     <div class="row gutters-sm">
       <div class="col-md-4 mb-3">
-        <div class="card" style="margin-bottom: 30px;"
-        >
+        <div class="card" style="margin-bottom: 30px;">
           <div class="card-body">
-            <carousel cellWidth="100%" >
+            <carousel cellWidth="100%">
               <div class="carousel-cell" *ngFor="let image of vehicle.images">
                 <img [src]="image.picByte" />
               </div>
             </carousel>
           </div>
         </div>
-        <button
-          *ngIf="this.authService.getRole() === 'admin' && !isActionClicked"
-          class="btn btn-danger wrn-btn"
-          style="width: 100%;"
-          (click)="onActionClick()"
-        >
+        <button *ngIf="this.authService.getRole() === 'admin' && !isActionClicked" class="btn btn-danger wrn-btn"
+          style="width: 100%;" (click)="onActionClick()">
           Postavite akciju za vozilo
         </button>
-        <button
-        *ngIf="this.authService.getRole() === 'client' && !isTestDriveClicked"
-        class="btn btn-danger wrn-btn"
-        style="width: 100%;"
-        (click)="onTestDriveClick()"
-      >
-        Zakažite test vožnju
-      </button>
-      <input
-          *ngIf="isTestDriveClicked"
-          type="date"
-          class="form-control search-slt"
-          placeholder="Unesite procenat popusta"
-          [(ngModel)]="testDriveDate"
-        />
-        <button
-        *ngIf="this.authService.getRole() === 'client' && testDriveDate !== ''"
-        class="btn btn-danger wrn-btn"
-        style="width: 100%;"
-        (click)="scheduleTestDrive()"
-      >
-        Zakažite test vožnju
-      </button>
-        <button
-          *ngIf="actionPrecent !== ''"
-          class="btn btn-danger wrn-btn"
-          style="width: 100%;"
-          (click)="createAction()"
-        >
+        <button *ngIf="this.authService.getRole() === 'client' && !isTestDriveClicked" class="btn btn-danger wrn-btn"
+          style="width: 100%;" (click)="onTestDriveClick()">
+          Zakažite test vožnju
+        </button>
+        <input *ngIf="isTestDriveClicked" type="date" class="form-control search-slt"
+          placeholder="Unesite procenat popusta" [(ngModel)]="testDriveDate" />
+        <button *ngIf="this.authService.getRole() === 'client' && testDriveDate !== ''" class="btn btn-danger wrn-btn"
+          style="width: 100%;" (click)="scheduleTestDrive()">
+          Zakažite test vožnju
+        </button>
+        <button *ngIf="actionPrecent !== ''" class="btn btn-danger wrn-btn" style="width: 100%;"
+          (click)="createAction()">
           Postavite akciju za vozilo
         </button>
-        <input
-          *ngIf="isActionClicked"
-          type="text"
-          class="form-control search-slt"
-          placeholder="Unesite procenat popusta"
-          [(ngModel)]="actionPrecent"
-        />
-        <button
-          *ngIf="this.authService.getRole() === 'admin'"
-          (click)="onSellVehicleClick()"
-          class="btn btn-danger wrn-btn"
-          style="width: 100%; margin-top: 30px"
-        >
+        <input *ngIf="isActionClicked" type="text" class="form-control search-slt"
+          placeholder="Unesite procenat popusta" [(ngModel)]="actionPrecent" />
+        <button *ngIf="this.authService.getRole() === 'admin'" (click)="onSellVehicleClick()"
+          class="btn btn-danger wrn-btn" style="width: 100%; margin-top: 30px">
           Uklonite vozilo iz ponude
         </button>
-        <button
-        *ngIf="this.authService.getRole() === 'admin'"
-        (click)="onChangeVehicle()"
-        class="btn btn-danger wrn-btn"
-        style="width: 100%; margin-top: 30px"
-      >
-        Izmenite vozilo
-      </button>
-        <button
-        *ngIf="this.authService.getRole() === 'client'"
-        class="btn btn-danger wrn-btn"
-        style="width: 100%; margin-top: 30px;"
-        (click)="onReservationClick()"
-      >
-        Rezervišite vozilo
-      </button>
+        <button *ngIf="this.authService.getRole() === 'admin'" (click)="onChangeVehicle()"
+          class="btn btn-danger wrn-btn" style="width: 100%; margin-top: 30px">
+          Izmenite vozilo
+        </button>
+        <button *ngIf="this.authService.getRole() === 'client'" class="btn btn-danger wrn-btn"
+          style="width: 100%; margin-top: 30px;" (click)="onReservationClick()">
+          Rezervišite vozilo
+        </button>
       </div>
       <div class="col-md-8">
         <div class="card mb-3">
@@ -172,10 +133,7 @@
             </div>
             <hr />
             <div class="row">
-              <div
-                class="col-sm-12 text-secondary"
-                style="text-align: center; text-decoration: underline"
-              >
+              <div class="col-sm-12 text-secondary" style="text-align: center; text-decoration: underline">
                 <h6>Cena: {{ vehicle.price }} €</h6>
                 <p style="font-size: 12px;">Šifra vozila: {{vehicle.vehicleId}}</p>
               </div>
@@ -188,16 +146,13 @@
               <div class="card-body">
                 <h4>Sigurnost</h4>
                 <div *ngFor="let item of vehicle.accessories">
-                  <h6
-                    class="mb-2 text-secondary"
-                    *ngIf="
+                  <h6 class="mb-2 text-secondary" *ngIf="
                       item.name === 'Airbag' ||
                       item.name === 'Kodiran ključ' ||
                       item.name === 'ABS' ||
                       item.name === 'ESP' ||
                       item.name === 'Alarm'
-                    "
-                  >
+                    ">
                     {{ item.name }}
                   </h6>
                 </div>
@@ -209,16 +164,13 @@
               <div class="card-body">
                 <h4>Dodatna oprema</h4>
                 <div *ngFor="let item of vehicle.accessories">
-                  <h6
-                    class="mb-2 text-secondary"
-                    *ngIf="
+                  <h6 class="mb-2 text-secondary" *ngIf="
                       item.name !== 'Airbag' &&
                       item.name !== 'Kodiran ključ' &&
                       item.name !== 'ABS' &&
                       item.name !== 'ESP' &&
                       item.name !== 'Alarm'
-                    "
-                  >
+                    ">
                     {{ item.name }}
                   </h6>
                 </div>
@@ -230,3 +182,31 @@
     </div>
   </div>
 </div>
+<section style="background-color: whitesmoke;">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5 col-md-6 col-12 pb-4">
+        <h1 style="color: black;">Utisci korisnika</h1>
+        <div *ngFor = "let feedback of feedbacks" style="background-color:white; color: black;" class="comment mt-4 text-justify float-left">
+          <h4>{{feedback.client.name}} {{feedback.client.lastName}}</h4> <span style="margin-left: 10px; font-size: 18px;"> Datum postavljanja:     {{feedback.dateOfPosting}}  </span> <br>
+          <p style="margin-top: 10px; font-size: 20px;">{{feedback.description}}</p>
+        </div>
+
+      </div>
+      <div *ngIf="this.authService.getRole() === 'client'" class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+        <form style="background-color: white;" id="algin-form">
+          <div class="form-group">
+            <h4>Ostavite utisak</h4> <label style="background-color: white;" for="message">Opis</label> 
+            <input
+              name="msg" id="" msg cols="30" rows="5" class="form-control" style="background-color: white; height: 100px; margin-top: 10px;" [(ngModel)]="description">
+          </div>
+          <div style="margin-top: 10px;" class="form-group">
+            <p class="text-secondary">Ukoliko ste<a href="#" class="alert-link"> imali iskustva</a> sa ovim vozilom budite slobodni da ostavite utisak o njemu kako biste pomogli drugim korisnicima pri kupovini</p>
+          </div>
+          <div class="form-inline"></div>
+          <div class="form-group"> <button style="background-color: #dc3545; color: white;" (click)="onAddFeedback()" type="button" id="post" class="btn">Ostavite utisak</button> </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

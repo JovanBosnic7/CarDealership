@@ -3,10 +3,7 @@ package rs.ac.uns.ftn.carDealership.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.carDealership.model.carDealership.*;
-import rs.ac.uns.ftn.carDealership.model.dto.CreateReservation;
-import rs.ac.uns.ftn.carDealership.model.dto.CreateTestDrive;
-import rs.ac.uns.ftn.carDealership.model.dto.ReservationDto;
-import rs.ac.uns.ftn.carDealership.model.dto.TestDriveDto;
+import rs.ac.uns.ftn.carDealership.model.dto.*;
 import rs.ac.uns.ftn.carDealership.model.users.Client;
 import rs.ac.uns.ftn.carDealership.model.vehicle.Vehicle;
 import rs.ac.uns.ftn.carDealership.repository.*;
@@ -39,6 +36,8 @@ public class ClientServiceImpl implements IClientService {
     private OfferStatusRepository offerStatusRepository;
     @Autowired
     private OfferRepository offerRepository;
+    @Autowired
+    private FeedbackRepository feedbackRepository;
 
     @Override
     public Client save(Client client) {
@@ -141,6 +140,16 @@ public class ClientServiceImpl implements IClientService {
     public void declineOffer(String reservationId) {
         Reservation reservation = getReservation(reservationId);
         createOffer(reservation.getReservationId(), "Odbijena");
+    }
+
+    @Override
+    public void createFeedback(CreateFeedback dto) {
+        Feedback feedback = new Feedback();
+        feedback.setDateOfPosting(new Date());
+        feedback.setClient(clientRepository.getById(UUID.fromString(dto.getClientId())));
+        feedback.setVehicle(vehicleRepository.getById(UUID.fromString(dto.getVehicleId())));
+        feedback.setDescription(dto.getDescription());
+        feedbackRepository.save(feedback);
     }
 
     private void createOffer(UUID reservationId, String offerStatus) {
