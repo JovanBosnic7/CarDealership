@@ -96,7 +96,7 @@ public class ClientServiceImpl implements IClientService {
         reservation.setTypeOfPayment(dto.getPayment());
         reservation.setReservationStatus(buildReservationStatus());
         Reservation res = reservationRepository.save(reservation);
-        if (!dto.getOfferedPrice().isEmpty()) {
+        if (dto.getOfferedPrice() != "0") {
             buildOffer(dto.getOfferedPrice(), res);
         }
     }

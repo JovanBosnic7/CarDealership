@@ -30,7 +30,7 @@
         id="email"
         placeholder="Imejl"
         value="{{ carDealership.email }}"
-        (change) = "onChangeE($event)"
+        (change)="onChangeE($event)"
       />
     </div>
     <div class="form-group">
@@ -40,27 +40,36 @@
         id="phone-number"
         placeholder="Broj telefona"
         value="{{ carDealership.phoneNumber }}"
-        (change) = "onChangeP($event)"
+        (change)="onChangeP($event)"
       />
       <input
-      type="text"
-      class="form-control item"
-      id="phone-number"
-      placeholder="Početak radnog vremena"
-      value="{{ carDealership.workTime.startTime }}"
-      (change) = "onChangeT($event)"
-    />
-    <input
-      type="text"
-      class="form-control item"
-      id="phone-number"
-      placeholder="Kraj radnog vremena"
-      value="{{ carDealership.workTime.endTime }}"
-      (change) = "onChangeEt($event)"
-    />
+        type="text"
+        class="form-control item"
+        id="phone-number"
+        placeholder="Početak radnog vremena"
+        value="{{ carDealership.workTime.startTime }}"
+        (change)="onChangeT($event)"
+      />
+      <input
+        type="text"
+        class="form-control item"
+        id="phone-number"
+        placeholder="Kraj radnog vremena"
+        value="{{ carDealership.workTime.endTime }}"
+        (change)="onChangeEt($event)"
+      />
+      <input
+        type="date"
+        class="form-control item"
+        placeholder="Unesite datum za koji radno vreme važi"
+      />
     </div>
     <div class="form-group">
-      <button type="button" (click) = "onClick()" class="btn btn-danger create-account">
+      <button
+        type="button"
+        (click)="onClick()"
+        class="btn btn-danger create-account"
+      >
         Izmeni podatke
       </button>
     </div>

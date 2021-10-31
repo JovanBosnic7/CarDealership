@@ -72,6 +72,6 @@ export class ChangeCarDealershipComponent implements OnInit {
       .updateCarDealership(this.carDealership)
       .subscribe((res) => {});
     alert('Podaci uspešno izmenjeni!');
-    this.router.navigate(['/cars']);
+    this.router.navigate(['/']);
   };
 }

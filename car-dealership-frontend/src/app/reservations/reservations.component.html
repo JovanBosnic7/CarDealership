@@ -65,16 +65,16 @@
             <td *ngIf="this.authService.getRole() === 'admin'" data-name="desc">
               {{ res.client }}
             </td>
-            <td *ngIf="res.offeredPrice != null" data-name="desc">
+            <td *ngIf="res.offeredPrice != 0.0 " data-name="desc">
               {{ res.offeredPrice }}
             </td>
-            <td *ngIf="res.offeredPrice == null" data-name="desc">
+            <td *ngIf="res.offeredPrice == 0.0" data-name="desc">
               Ne postoji ponuda
             </td>
-            <td *ngIf="res.offeredPrice != null" data-name="desc">
+            <td *ngIf="res.offeredPrice != 0.0" data-name="desc">
               {{ res.offerStatus }}
             </td>
-            <td *ngIf="res.offeredPrice == null" data-name="desc">
+            <td *ngIf="res.offeredPrice == 0.0" data-name="desc">
               Ne postoji ponuda
             </td>
             <td data-name="del">

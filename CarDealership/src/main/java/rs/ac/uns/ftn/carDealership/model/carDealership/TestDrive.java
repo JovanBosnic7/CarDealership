@@ -22,19 +22,12 @@ public class TestDrive {
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "test_drive_id", nullable = false, unique = true)
     private UUID testDriveId;
-
-    @Column(name = "date_of_test_drive")
+    @Column(name = "date_of_test_drive", nullable = false)
     private Date dateOfTestDrive;
-
-    @Column(name = "mileage")
-    private double mileage;
-
     @ManyToOne
     @JoinColumn(name = "vehicle_id", referencedColumnName = "vehicle_id")
     private Vehicle vehicle;
-
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private Client client;
-
 }
